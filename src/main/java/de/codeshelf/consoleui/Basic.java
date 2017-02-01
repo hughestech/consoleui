@@ -38,7 +38,7 @@ public class Basic {
               .message("Please enter your name")
               //.mask('*')
               .validate(input -> {
-            	  if(input == null) {
+            	  if(input == null || input.length() < 3) {
             		  return "Entrada inválida";
             	  }
             	  return true;

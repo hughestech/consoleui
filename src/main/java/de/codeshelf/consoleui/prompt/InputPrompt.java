@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.plaf.InputMapUIResource;
 
 import org.fusesource.jansi.Ansi.Color;
+import org.fusesource.jansi.Ansi.Erase;
 
 import de.codeshelf.consoleui.elements.InputValue;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
@@ -57,7 +58,7 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 
 		this.completer = inputElement.getCompleter();
 		this.mask = inputElement.getMask();
-		
+
 		do {
 			prompt();
 			read(inputElement, prompt, completer, mask);
@@ -114,7 +115,7 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 				String stringValidationResult = (String) validationResult;
 				invalidInput = true;
 				System.out.print(ansi().cursorDown(renderHeight).fg(Color.RED).a(">> ").reset().a(stringValidationResult));
-				System.out.println(ansi().cursorUp(renderHeight));
+				System.out.println(ansi().cursorUp(renderHeight).eraseLine());
 			}
 		}
 	}
