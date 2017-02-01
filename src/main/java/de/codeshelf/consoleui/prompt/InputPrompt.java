@@ -5,6 +5,8 @@ import static org.fusesource.jansi.Ansi.ansi;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.plaf.InputMapUIResource;
+
 import org.fusesource.jansi.Ansi.Color;
 
 import de.codeshelf.consoleui.elements.InputValue;
@@ -31,6 +33,11 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	private ReaderIF reader;
 	CUIRenderer itemRenderer = CUIRenderer.getRenderer();
 	private boolean invalidInput = false;
+	ReaderIF.ReaderInput readerInput;
+	private String lineInput;
+	Character mask;
+	List<Completer> completer;
+	private String prompt;
 
 	public InputPrompt() throws IOException {
 	}
@@ -38,33 +45,24 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	public InputResult prompt(InputValue inputElement) throws IOException {
 		this.inputElement = inputElement;
 
-		if (reader == null) {
-			reader = new ConsoleReaderImpl();
-		}
+		/*
+		 * if (reader == null) { reader = new ConsoleReaderImpl(); }
+		 */
 
 		if (renderHeight == 0) {
 			renderHeight = 1;
 		} else {
 			System.out.println(ansi().cursorUp(renderHeight));
 		}
-		
-		String prompt = renderMessagePrompt(this.inputElement.getMessage(), invalidInput)
-				+ itemRenderer.renderOptionalDefaultValue(this.inputElement);
-		List<Completer> completer = inputElement.getCompleter();
-		Character mask = inputElement.getMask();
-		ReaderIF.ReaderInput readerInput = reader.readLine(completer, prompt, inputElement.getValue(), mask);
-		String lineInput = readerInput.getLineInput();
 
-		if (lineInput == null || lineInput.trim().length() == 0) {
-			lineInput = inputElement.getDefaultValue();
-		}
+		this.completer = inputElement.getCompleter();
+		this.mask = inputElement.getMask();
 		
-		/*
-		if (validateInput(inputElement, lineInput, readerInput)) {
-			this.reader = null;
-			prompt(inputElement);
-		}*/
-		
+		do {
+			prompt();
+			read(inputElement, prompt, completer, mask);
+			validateInput(inputElement, lineInput, readerInput);
+		} while (this.invalidInput);
 
 		String result;
 		if (mask == null) {
@@ -83,23 +81,42 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 		return new InputResult(lineInput);
 	}
 
-	private boolean validateInput(InputValue inputElement, String lineInput, ReaderIF.ReaderInput readerInput) throws IOException {
+	private void prompt() {
+		String optionalDefaultValue = itemRenderer.renderOptionalDefaultValue(this.inputElement);
+		this.prompt = renderMessagePrompt(this.inputElement.getMessage(), invalidInput) + optionalDefaultValue;
+	}
+
+	private void read(InputValue inputElement, String prompt, List<Completer> completer, Character mask) throws IOException {
+		this.reader = new ConsoleReaderImpl();
+		this.readerInput = reader.readLine(completer, prompt, inputElement.getValue(), mask);
+		this.lineInput = readerInput.getLineInput();
+		setupDefaultValue(inputElement);
+	}
+
+	private void setupDefaultValue(InputValue inputElement) {
+		if (lineInput == null || lineInput.trim().length() == 0) {
+			lineInput = inputElement.getDefaultValue();
+		}
+	}
+
+	private void validateInput(InputValue inputElement, String lineInput, ReaderIF.ReaderInput readerInput) throws IOException {
 		Validator validator = inputElement.getValidator();
-		invalidInput = false;
 		if (validator != null) {
+			invalidInput = false;
 			Object validationResult = validator.test(lineInput);
 			if (validationResult instanceof Boolean) {
 				boolean booleanValidationResult = Boolean.valueOf(validationResult.toString());
 				if (!booleanValidationResult) {
 					invalidInput = true;
+					System.out.println(ansi().cursorUp(renderHeight));
 				}
 			} else if (validationResult instanceof String) {
 				String stringValidationResult = (String) validationResult;
 				invalidInput = true;
 				System.out.print(ansi().cursorDown(renderHeight).fg(Color.RED).a(">> ").reset().a(stringValidationResult));
+				System.out.println(ansi().cursorUp(renderHeight));
 			}
 		}
-		return invalidInput;
 	}
 
 	private void sleep() {
