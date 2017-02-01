@@ -36,8 +36,13 @@ public class Basic {
       promptBuilder.createInputPrompt()
               .name("name")
               .message("Please enter your name")
-              .defaultValue("John Doe")
               //.mask('*')
+              .validate(input -> {
+            	  if(input == null) {
+            		  return "Entrada inválida";
+            	  }
+            	  return true;
+              })
               .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
               .addPrompt();
 

@@ -5,6 +5,8 @@ import jline.console.completer.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.codeshelf.consoleui.util.Validator;
+
 /**
  * User: Andreas Wegmann Date: 06.01.16
  */
@@ -13,6 +15,7 @@ public class InputValue extends AbstractPromptableElement {
 	private String defaultValue;
 	private List<Completer> completer;
 	private Character mask;
+	private Validator validator;
 
 	public InputValue(String name, String message) {
 		super(message, name);
@@ -58,4 +61,13 @@ public class InputValue extends AbstractPromptableElement {
 	public Character getMask() {
 		return mask;
 	}
+
+	public Validator getValidator() {
+		return validator;
+	}
+
+	public void setValidator(Validator validator) {
+		this.validator = validator;
+	}
+
 }

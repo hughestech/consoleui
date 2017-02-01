@@ -1,6 +1,7 @@
 package de.codeshelf.consoleui.prompt.builder;
 
 import de.codeshelf.consoleui.elements.InputValue;
+import de.codeshelf.consoleui.util.Validator;
 import jline.console.completer.Completer;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class InputValueBuilder {
 	private String message;
 	private Character mask;
 	private ArrayList<Completer> completers;
+	private Validator validator;
 
 	public InputValueBuilder(PromptBuilder promptBuilder) {
 		this.promptBuilder = promptBuilder;
@@ -48,6 +50,11 @@ public class InputValueBuilder {
 		return this;
 	}
 
+	public InputValueBuilder validate(Validator validator) {
+		this.validator = validator;
+		return this;
+	}
+
 	public PromptBuilder addPrompt() {
 		InputValue inputValue = new InputValue(name, message, null, defaultValue);
 		if (completers != null) {
@@ -55,6 +62,9 @@ public class InputValueBuilder {
 		}
 		if (mask != null) {
 			inputValue.setMask(mask);
+		}
+		if (validator != null) {
+			inputValue.setValidator(validator);
 		}
 		promptBuilder.addPrompt(inputValue);
 		return promptBuilder;

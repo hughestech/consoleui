@@ -43,6 +43,13 @@ public abstract class AbstractPrompt {
   protected String renderMessagePrompt(String message) {
     return (ansi().fg(Ansi.Color.GREEN).a("? ").fgBright(Ansi.Color.WHITE).bold().a(message)).boldOff().fg(Ansi.Color.DEFAULT).toString();
   }
+  
+  protected String renderMessagePrompt(String message, boolean invalidInput) {
+	  if(invalidInput) {
+		  return (ansi().cursorUp(renderHeight).fg(Ansi.Color.GREEN).a("? ").fgBright(Ansi.Color.WHITE).bold().a(message)).boldOff().fg(Ansi.Color.DEFAULT).toString();
+	  }
+	  return renderMessagePrompt(message);
+  }
 
   /**
    * Default constructor. Initializes the resource bundle for localized messages.
