@@ -3,6 +3,7 @@ package de.codeshelf.consoleui.prompt;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.Ansi.Color;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -41,12 +42,12 @@ public abstract class AbstractPrompt {
    * @return String with ANSI-Color printable prompt.
    */
   protected String renderMessagePrompt(String message) {
-    return (ansi().fg(Ansi.Color.GREEN).a("? ").fgBright(Ansi.Color.WHITE).bold().a(message)).boldOff().fg(Ansi.Color.DEFAULT).toString();
+    return (ansi().fg(Color.WHITE).a("[").fg(Color.GREEN).a("?").fg(Color.WHITE).a("] ").fgBright(Ansi.Color.WHITE).bold().a(message)).boldOff().fg(Ansi.Color.DEFAULT).toString();
   }
   
   protected String renderMessagePrompt(String message, boolean invalidInput) {
 	  if(invalidInput) {
-		  return (ansi().cursorUp(renderHeight).fg(Ansi.Color.GREEN).a("? ").fgBright(Ansi.Color.WHITE).bold().a(message)).boldOff().fg(Ansi.Color.DEFAULT).toString();
+		  return (ansi().cursorUp(renderHeight).fg(Color.WHITE).a("[").fg(Color.GREEN).a("?").fg(Color.WHITE).a("] ").fgBright(Ansi.Color.WHITE).bold().a(message)).boldOff().fg(Ansi.Color.DEFAULT).toString();
 	  }
 	  return renderMessagePrompt(message);
   }
