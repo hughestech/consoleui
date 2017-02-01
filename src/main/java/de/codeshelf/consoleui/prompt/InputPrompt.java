@@ -30,7 +30,7 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue,I
   }
 
 
-  public InputResult prompt(InputValue inputElement) throws IOException {
+	public InputResult prompt(InputValue inputElement) throws IOException {
     this.inputElement = inputElement;
 
     if (reader == null) {
