@@ -16,7 +16,7 @@ import static org.fusesource.jansi.Ansi.ansi;
  * User: Andreas Wegmann
  * Date: 06.01.16
  */
-public class ConfirmPrompt extends AbstractPrompt implements PromptIF<ConfirmChoice, ConfirmResult> {
+public class ConfirmPrompt extends AbstractPrompt implements PromptIF<ConfirmChoice, ConfirmAnswer> {
 
   private ReaderIF reader;
   CUIRenderer itemRenderer = CUIRenderer.getRenderer();
@@ -44,10 +44,10 @@ public class ConfirmPrompt extends AbstractPrompt implements PromptIF<ConfirmCho
    * Prompt the user for a question which can be answered with yes or no.
    *
    * @param confirmChoice the question for the user.
-   * @return {@link ConfirmResult} object with answer.
+   * @return {@link ConfirmAnswer} object with answer.
    * @throws IOException can be thrown by the console reader.
    */
-  public ConfirmResult prompt(ConfirmChoice confirmChoice) throws IOException {
+  public ConfirmAnswer prompt(ConfirmChoice confirmChoice) throws IOException {
     givenAnswer = null;
     this.confirmChoice = confirmChoice;
 
@@ -94,7 +94,7 @@ public class ConfirmPrompt extends AbstractPrompt implements PromptIF<ConfirmCho
     System.out.println();
     renderMessagePromptAndResult(confirmChoice.getMessage(), resultValue);
 
-    return new ConfirmResult(givenAnswer);
+    return new ConfirmAnswer(givenAnswer);
   }
 
   /**

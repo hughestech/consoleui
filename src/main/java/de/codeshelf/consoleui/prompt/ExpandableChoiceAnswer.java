@@ -7,7 +7,7 @@ package de.codeshelf.consoleui.prompt;
  * User: Andreas Wegmann<p>
  * Date: 03.02.16
  */
-public class ExpandableChoiceResult implements Answer {
+public class ExpandableChoiceAnswer implements Answer {
   String selectedId;
 
   /**
@@ -15,7 +15,7 @@ public class ExpandableChoiceResult implements Answer {
    *
    * @param selectedId the selected id
    */
-  public ExpandableChoiceResult(String selectedId) {
+  public ExpandableChoiceAnswer(String selectedId) {
     this.selectedId = selectedId;
   }
 

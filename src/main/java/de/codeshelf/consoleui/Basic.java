@@ -1,7 +1,7 @@
 package de.codeshelf.consoleui;
 
 import de.codeshelf.consoleui.elements.ConfirmChoice;
-import de.codeshelf.consoleui.prompt.ConfirmResult;
+import de.codeshelf.consoleui.prompt.ConfirmAnswer;
 import de.codeshelf.consoleui.prompt.ConsolePrompt;
 import de.codeshelf.consoleui.prompt.Answer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
@@ -96,7 +96,7 @@ public class Basic {
       HashMap<String, ? extends Answer> result = prompt.prompt(promptBuilder.build());
       System.out.println("result = " + result);
 
-      ConfirmResult delivery = (ConfirmResult) result.get("delivery");
+      ConfirmAnswer delivery = (ConfirmAnswer) result.get("delivery");
       if (delivery.getConfirmed()== ConfirmChoice.ConfirmationValue.YES) {
         System.out.println("We will deliver the pizza in 5 minutes");
       }

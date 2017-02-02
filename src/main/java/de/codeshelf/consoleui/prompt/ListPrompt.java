@@ -17,7 +17,7 @@ import static org.fusesource.jansi.Ansi.ansi;
  * User: Andreas Wegmann
  * Date: 01.01.16
  */
-public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListChoice,ListResult> {
+public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListChoice,ListAnswer> {
   // the list to let the user choose from
   private ListChoice listChoice;
 
@@ -44,7 +44,7 @@ public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListC
     }
   }
 
-  public ListResult prompt(ListChoice listChoice) throws IOException {
+  public ListAnswer prompt(ListChoice listChoice) throws IOException {
     this.listChoice = listChoice;
     itemList = listChoice.getListItemList();
     if (reader == null) {
@@ -79,7 +79,7 @@ public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListC
     }
 
     ListItem listItem = (ListItem) itemList.get(selectedItemIndex);
-    ListResult selection=new ListResult(listItem.getName());
+    ListAnswer selection=new ListAnswer(listItem.getName());
     renderMessagePromptAndResult(listChoice.getMessage(),((ListItem) itemList.get(selectedItemIndex)).getText());
     return selection ;
   }

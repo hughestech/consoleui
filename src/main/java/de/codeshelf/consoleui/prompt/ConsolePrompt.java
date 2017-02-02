@@ -96,19 +96,19 @@ public class ConsolePrompt {
 		for (int i = 0; i < promptableElementList.size(); i++) {
 			PromptableElementIF promptableElement = promptableElementList.get(i);
 			if (promptableElement instanceof ListChoice) {
-				ListResult result = doPrompt((ListChoice) promptableElement);
+				ListAnswer result = doPrompt((ListChoice) promptableElement);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof InputValue) {
-				InputResult result = doPrompt((InputValue) promptableElement);
+				InputAnswer result = doPrompt((InputValue) promptableElement);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof ExpandableChoice) {
-				ExpandableChoiceResult result = doPrompt((ExpandableChoice) promptableElement);
+				ExpandableChoiceAnswer result = doPrompt((ExpandableChoice) promptableElement);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof Checkbox) {
-				CheckboxResult result = doPrompt((Checkbox) promptableElement);
+				CheckboxAnswer result = doPrompt((Checkbox) promptableElement);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof ConfirmChoice) {
-				ConfirmResult result = doPrompt((ConfirmChoice) promptableElement);
+				ConfirmAnswer result = doPrompt((ConfirmChoice) promptableElement);
 				answers.put(promptableElement.getName(), result);
 			} else {
 				throw new IllegalArgumentException("wrong type of promptable element");
@@ -122,11 +122,11 @@ public class ConsolePrompt {
 	 *
 	 * @param confirmChoice
 	 *            the confirmation to ask the user for.
-	 * @return Object of type {@link ConfirmResult} holding the users answer
+	 * @return Object of type {@link ConfirmAnswer} holding the users answer
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private ConfirmResult doPrompt(ConfirmChoice confirmChoice) throws IOException {
+	private ConfirmAnswer doPrompt(ConfirmChoice confirmChoice) throws IOException {
 		return getConfirmPrompt().prompt(confirmChoice);
 	}
 
@@ -135,11 +135,11 @@ public class ConsolePrompt {
 	 *
 	 * @param listChoice
 	 *            the list to let the user choose an item from.
-	 * @return Object of type {@link ListResult} holding the uses choice.
+	 * @return Object of type {@link ListAnswer} holding the uses choice.
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private ListResult doPrompt(ListChoice listChoice) throws IOException {
+	private ListAnswer doPrompt(ListChoice listChoice) throws IOException {
 		return getListPrompt().prompt(listChoice);
 	}
 
@@ -148,11 +148,11 @@ public class ConsolePrompt {
 	 *
 	 * @param inputValue
 	 *            the input value to ask the user for.
-	 * @return Object of type {@link InputResult} holding the uses input.
+	 * @return Object of type {@link InputAnswer} holding the uses input.
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private InputResult doPrompt(InputValue inputValue) throws IOException {
+	private InputAnswer doPrompt(InputValue inputValue) throws IOException {
 		return getInputPrompt().prompt(inputValue);
 	}
 
@@ -161,11 +161,11 @@ public class ConsolePrompt {
 	 *
 	 * @param checkbox
 	 *            the checkbox displayed where the user can check values.
-	 * @return Object of type {@link CheckboxResult} holding the uses choice.
+	 * @return Object of type {@link CheckboxAnswer} holding the uses choice.
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private CheckboxResult doPrompt(Checkbox checkbox) throws IOException {
+	private CheckboxAnswer doPrompt(Checkbox checkbox) throws IOException {
 		return getCheckboxPrompt().prompt(checkbox);
 	}
 
@@ -175,12 +175,12 @@ public class ConsolePrompt {
 	 * @param expandableChoice
 	 *            the expandable choice displayed where the user can select a
 	 *            value from.
-	 * @return Object of type {@link ExpandableChoiceResult} holding the uses
+	 * @return Object of type {@link ExpandableChoiceAnswer} holding the uses
 	 *         choice.
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private ExpandableChoiceResult doPrompt(ExpandableChoice expandableChoice) throws IOException {
+	private ExpandableChoiceAnswer doPrompt(ExpandableChoice expandableChoice) throws IOException {
 		return getExpandableChoicePrompt().prompt(expandableChoice);
 	}
 

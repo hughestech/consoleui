@@ -5,7 +5,7 @@ package de.codeshelf.consoleui.prompt;
  * <p>
  * Created by Andreas Wegmann on 03.02.16.
  */
-public class ListResult implements Answer {
+public class ListAnswer implements Answer {
 
   String selectedId;
 
@@ -23,7 +23,7 @@ public class ListResult implements Answer {
    *
    * @param selectedId id of selected item.
    */
-  public ListResult(String selectedId) {
+  public ListAnswer(String selectedId) {
     this.selectedId = selectedId;
   }
 

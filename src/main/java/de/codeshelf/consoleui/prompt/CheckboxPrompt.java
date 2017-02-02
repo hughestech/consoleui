@@ -14,7 +14,7 @@ import java.util.LinkedHashSet;
 /**
  * CheckboxPrompt implements the checkbox choice handling.
  */
-public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<Checkbox,CheckboxResult> {
+public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<Checkbox,CheckboxAnswer> {
 
   // checkbox object to prompt the user for.
   private Checkbox checkbox;
@@ -56,11 +56,11 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
    * Prompt the user for selecting zero to many choices from a checkbox.
    *
    * @param checkbox checkbox with items to choose from.
-   * @return {@link CheckboxResult} which holds the users choices.
+   * @return {@link CheckboxAnswer} which holds the users choices.
    *
    * @throws IOException  may be thrown by console reader
    */
-  public CheckboxResult prompt(Checkbox checkbox)
+  public CheckboxAnswer prompt(Checkbox checkbox)
           throws IOException {
     this.checkbox = checkbox;
     itemList = this.checkbox.getCheckboxItemList();
@@ -105,7 +105,7 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
       }
     }
     renderMessagePromptAndResult(checkbox.getMessage(), selections.toString());
-    return new CheckboxResult(selections);
+    return new CheckboxAnswer(selections);
   }
 
   /**

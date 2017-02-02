@@ -22,7 +22,7 @@ import static org.fusesource.jansi.Ansi.ansi;
  * User: Andreas Wegmann<p>
  * Date: 07.01.16
  */
-public class ExpandableChoicePrompt extends AbstractListablePrompt implements PromptIF<ExpandableChoice, ExpandableChoiceResult> {
+public class ExpandableChoicePrompt extends AbstractListablePrompt implements PromptIF<ExpandableChoice, ExpandableChoiceAnswer> {
   private ExpandableChoice expandableChoice;
   CUIRenderer itemRenderer = CUIRenderer.getRenderer();
   ChoiceItem chosenItem;
@@ -80,7 +80,7 @@ public class ExpandableChoicePrompt extends AbstractListablePrompt implements Pr
     }
   }
 
-  public ExpandableChoiceResult prompt(ExpandableChoice expandableChoice) throws IOException {
+  public ExpandableChoiceAnswer prompt(ExpandableChoice expandableChoice) throws IOException {
     this.expandableChoice = expandableChoice;
 
     choiceItems = expandableChoice.getChoiceItems();
@@ -136,10 +136,10 @@ public class ExpandableChoicePrompt extends AbstractListablePrompt implements Pr
           }
           if (chosenItem != null) {
             renderMessagePromptAndResult(expandableChoice.getMessage(), chosenItem.getMessage());
-            return new ExpandableChoiceResult(chosenItem.getName());
+            return new ExpandableChoiceAnswer(chosenItem.getName());
           } else {
             renderMessagePromptAndResult(expandableChoice.getMessage(), defaultItem.getMessage());
-            return new ExpandableChoiceResult(defaultItem.getName());
+            return new ExpandableChoiceAnswer(defaultItem.getName());
           }
         }
       } else if (readerInput.getSpecialKey() == ReaderIF.SpecialKey.UP) {

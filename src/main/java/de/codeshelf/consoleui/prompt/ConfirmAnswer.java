@@ -9,7 +9,7 @@ import de.codeshelf.consoleui.elements.ConfirmChoice;
  * User: Andreas Wegmann
  * Date: 03.02.16
  */
-public class ConfirmResult implements Answer {
+public class ConfirmAnswer implements Answer {
   ConfirmChoice.ConfirmationValue confirmed;
 
   /**
@@ -17,7 +17,7 @@ public class ConfirmResult implements Answer {
    *
    * @param confirm the result value to hold.
    */
-  public ConfirmResult(ConfirmChoice.ConfirmationValue confirm) {
+  public ConfirmAnswer(ConfirmChoice.ConfirmationValue confirm) {
     this.confirmed = confirm;
   }
 

@@ -28,7 +28,7 @@ import jline.console.completer.Completer;
  * <p>
  * Date: 06.01.16
  */
-public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, InputResult> {
+public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, InputAnswer> {
 
 	private InputValue inputElement;
 	private ReaderIF reader;
@@ -43,7 +43,7 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	public InputPrompt() throws IOException {
 	}
 
-	public InputResult prompt(InputValue inputElement) throws IOException {
+	public InputAnswer prompt(InputValue inputElement) throws IOException {
 		this.inputElement = inputElement;
 
 		/*
@@ -79,7 +79,7 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 
 		renderMessagePromptAndResult(inputElement.getMessage(), result);
 
-		return new InputResult(lineInput);
+		return new InputAnswer(lineInput);
 	}
 
 	private void prompt() {
