@@ -22,6 +22,7 @@ public class InputBuilder {
 	private Consumer<String> validator;
 	private Function<Map<String, Answer>, String> fnMessage;
 	private Boolean required;
+	private Function<Map<String, Answer>, Boolean> fnWhen;
 
 	public InputBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
@@ -40,6 +41,11 @@ public class InputBuilder {
 
 	public InputBuilder message(Function<Map<String, Answer>, String> message) {
 		this.fnMessage = message;
+		return this;
+	}
+
+	public InputBuilder when(Function<Map<String, Answer>, Boolean> when) {
+		this.fnWhen = when;
 		return this;
 	}
 
@@ -82,6 +88,9 @@ public class InputBuilder {
 		}
 		if (required != null) {
 			inputValue.setRequired(required);
+		}
+		if (fnWhen != null) {
+			inputValue.setFnWhen(fnWhen);
 		}
 		promptBuilder.addPrompt(inputValue);
 		return promptBuilder;

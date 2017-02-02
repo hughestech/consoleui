@@ -2,8 +2,11 @@ package de.codeshelf.consoleui.elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
+import de.codeshelf.consoleui.prompt.answer.Answer;
 import jline.console.completer.Completer;
 
 /**
@@ -16,6 +19,7 @@ public class InputValue extends AbstractPromptableElement {
 	private Character mask;
 	private Consumer<String> validator;
 	private Boolean required;
+	private Function<Map<String, Answer>, Boolean> fnWhen;
 
 	public InputValue(String name, String message) {
 		super(message, name);
@@ -77,5 +81,15 @@ public class InputValue extends AbstractPromptableElement {
 	public void setRequired(Boolean required) {
 		this.required = required;
 	}
+
+	public Function<Map<String, Answer>, Boolean> getFnWhen() {
+		return fnWhen;
+	}
+
+	public void setFnWhen(Function<Map<String, Answer>, Boolean> fnWhen) {
+		this.fnWhen = fnWhen;
+	}
+	
+	
 
 }

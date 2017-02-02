@@ -96,8 +96,16 @@ public class ConsolePrompt {
 				ListAnswer result = doPrompt((ListChoice) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof InputValue) {
-				InputAnswer result = doPrompt((InputValue) promptableElement, answers);
-				answers.put(promptableElement.getName(), result);
+				InputValue inputValue = (InputValue) promptableElement;
+				if (inputValue.getFnWhen() != null) {
+					if (inputValue.getFnWhen().apply(answers)) {
+						InputAnswer result = doPrompt(inputValue, answers);
+						answers.put(promptableElement.getName(), result);
+					}
+				} else {
+					InputAnswer result = doPrompt(inputValue, answers);
+					answers.put(promptableElement.getName(), result);
+				}
 			} else if (promptableElement instanceof Checkbox) {
 				CheckboxAnswer result = doPrompt((Checkbox) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
