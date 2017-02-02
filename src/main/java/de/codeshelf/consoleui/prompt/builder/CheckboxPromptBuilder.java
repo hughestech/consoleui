@@ -3,12 +3,15 @@ package de.codeshelf.consoleui.prompt.builder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 
 import de.codeshelf.consoleui.elements.Checkbox;
 import de.codeshelf.consoleui.elements.items.CheckboxItemIF;
 import de.codeshelf.consoleui.elements.items.impl.CheckboxItem;
+import de.codeshelf.consoleui.prompt.Answer;
 
 /**
  * Created by andy on 22.01.16.
@@ -18,6 +21,7 @@ public class CheckboxPromptBuilder {
 	private String name;
 	private String message;
 	private List<CheckboxItemIF> itemList;
+	private Function<Map<String, Answer>, String> fnMessage;
 
 	public CheckboxPromptBuilder(PromptBuilder promptBuilder) {
 		this.promptBuilder = promptBuilder;
@@ -44,6 +48,14 @@ public class CheckboxPromptBuilder {
 		return this;
 	}
 
+	public CheckboxPromptBuilder message(Function<Map<String, Answer>, String> fnMessage) {
+		this.fnMessage = fnMessage;
+		if (name == null) {
+			name = message;
+		}
+		return this;
+	}
+
 	public CheckboxItemBuilder newItem() {
 		return new CheckboxItemBuilder(this);
 	}
@@ -52,20 +64,14 @@ public class CheckboxPromptBuilder {
 		CheckboxItemBuilder checkboxItemBuilder = new CheckboxItemBuilder(this);
 		return checkboxItemBuilder.name(name);
 	}
-	
-	public CheckboxPromptBuilder choices(String...choices) {
+
+	public CheckboxPromptBuilder choices(String... choices) {
 	//// @formatter:off
 			Arrays.asList(choices).stream()
 				.filter(StringUtils::isNotBlank)
 				.forEach(choice -> itemList.add(new CheckboxItem(choice)));
 			// @formatter:on
-			return this;
-	}
-
-	public PromptBuilder build() {
-		Checkbox checkbox = new Checkbox(message, name, itemList);
-		promptBuilder.addPrompt(checkbox);
-		return promptBuilder;
+		return this;
 	}
 
 	public CheckboxSeperatorBuilder newSeparator() {
@@ -75,6 +81,15 @@ public class CheckboxPromptBuilder {
 	public CheckboxSeperatorBuilder newSeparator(String text) {
 		CheckboxSeperatorBuilder checkboxSeperatorBuilder = new CheckboxSeperatorBuilder(this);
 		return checkboxSeperatorBuilder.text(text);
+	}
+
+	public PromptBuilder build() {
+		Checkbox checkbox = new Checkbox(message, name, itemList);
+		if(fnMessage != null) {
+			checkbox.setFnMessage(fnMessage);
+		}
+		promptBuilder.addPrompt(checkbox);
+		return promptBuilder;
 	}
 
 }

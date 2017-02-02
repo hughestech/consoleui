@@ -19,6 +19,8 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
 
 	// checkbox object to prompt the user for.
 	private Checkbox checkbox;
+	
+	private String message;
 
 	/**
 	 * helper class with render functionality.
@@ -46,7 +48,7 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
 		} else {
 			System.out.println(Ansi.ansi().cursorUp(this.renderHeight));
 		}
-		System.out.println(renderMessagePrompt(this.checkbox.getMessage()));
+		System.out.println(renderMessagePrompt(this.message));
 		for (ConsoleUIItemIF checkboxItem : itemList) {
 			String renderedItem = this.itemRenderer.render(checkboxItem, this.selectedItemIndex == itemNumber);
 			System.out.println(renderedItem);
@@ -66,6 +68,10 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
 	 */
 	public CheckboxAnswer prompt(Checkbox checkbox, HashMap<String, Answer> answers) throws IOException {
 		this.checkbox = checkbox;
+		
+		this.message = this.checkbox.getFnMessage() != null ? this.checkbox.getFnMessage().apply(answers)
+				: this.checkbox.getMessage();
+		
 		itemList = this.checkbox.getCheckboxItemList();
 
 		this.reader.addAllowedPrintableKey('j');
@@ -107,7 +113,7 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
 				}
 			}
 		}
-		renderMessagePromptAndResult(checkbox.getMessage(), selections.toString());
+		renderMessagePromptAndResult(this.message, selections.toString());
 		return new CheckboxAnswer(selections);
 	}
 
