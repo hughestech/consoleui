@@ -21,7 +21,7 @@ public class InputValueBuilder {
 	private ArrayList<Completer> completers;
 	private Consumer<String> validator;
 	private Function<Map<String, Answer>, String> fnMessage;
-	private boolean required;
+	private Boolean required;
 
 	public InputValueBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
@@ -79,6 +79,9 @@ public class InputValueBuilder {
 		}
 		if (validator != null) {
 			inputValue.setValidator(validator);
+		}
+		if (required != null) {
+			inputValue.setRequired(required);
 		}
 		promptBuilder.addPrompt(inputValue);
 		return promptBuilder;

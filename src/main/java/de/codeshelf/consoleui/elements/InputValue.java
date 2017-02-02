@@ -15,6 +15,7 @@ public class InputValue extends AbstractPromptableElement {
 	private List<Completer> completer;
 	private Character mask;
 	private Consumer<String> validator;
+	private Boolean required;
 
 	public InputValue(String name, String message) {
 		super(message, name);
@@ -67,6 +68,14 @@ public class InputValue extends AbstractPromptableElement {
 
 	public void setValidator(Consumer<String> validator) {
 		this.validator = validator;
+	}
+
+	public Boolean getRequired() {
+		return required;
+	}
+
+	public void setRequired(Boolean required) {
+		this.required = required;
 	}
 
 }

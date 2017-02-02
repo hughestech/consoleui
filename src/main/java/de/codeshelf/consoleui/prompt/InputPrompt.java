@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.StringUtils;
 import org.fusesource.jansi.Ansi.Color;
 
 import de.codeshelf.consoleui.elements.InputValue;
@@ -106,8 +107,8 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 
 	private void validateInput(InputValue inputElement, String lineInput, ReaderIF.ReaderInput readerInput) throws IOException {
 		Consumer<String> validator = inputElement.getValidator();
+		invalidInput = false;
 		if (validator != null) {
-			invalidInput = false;
 			try {
 				validator.accept(lineInput);
 			} catch (InvalidInputException e) {
@@ -116,14 +117,10 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 				System.out.println(ansi().cursorUp(renderHeight).eraseLine());
 			}
 		}
-	}
-
-	private void sleep() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (inputElement.getRequired() != null && StringUtils.isEmpty(lineInput)) {
+			invalidInput = true;
+			System.out.print(ansi().cursorDown(renderHeight).fg(Color.RED).a(">> ").reset().a("Preenchimento obrigatório"));
+			System.out.println(ansi().cursorUp(renderHeight).eraseLine());
 		}
 	}
 }
