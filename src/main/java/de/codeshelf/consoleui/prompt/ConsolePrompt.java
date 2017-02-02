@@ -97,8 +97,7 @@ public class ConsolePrompt {
 			} else if (promptableElement instanceof InputValue) {
 				doInputPrompt(answers, promptableElement);
 			} else if (promptableElement instanceof Checkbox) {
-				CheckboxAnswer result = doPrompt((Checkbox) promptableElement, answers);
-				answers.put(promptableElement.getName(), result);
+				doCheckboxPrompt(answers, promptableElement);
 			} else if (promptableElement instanceof ConfirmChoice) {
 				ConfirmAnswer result = doPrompt((ConfirmChoice) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
@@ -131,6 +130,19 @@ public class ConsolePrompt {
 			}
 		} else {
 			ListAnswer result = doPrompt(listChoice, answers);
+			answers.put(promptableElement.getName(), result);
+		}
+	}
+
+	private void doCheckboxPrompt(HashMap<String, Answer> answers, PromptableElementIF promptableElement) throws IOException {
+		Checkbox checkbox = (Checkbox) promptableElement;
+		if (checkbox.getFnWhen() != null) {
+			if (checkbox.getFnWhen().apply(answers)) {
+				CheckboxAnswer result = doPrompt(checkbox, answers);
+				answers.put(promptableElement.getName(), result);
+			}
+		} else {
+			CheckboxAnswer result = doPrompt(checkbox, answers);
 			answers.put(promptableElement.getName(), result);
 		}
 	}

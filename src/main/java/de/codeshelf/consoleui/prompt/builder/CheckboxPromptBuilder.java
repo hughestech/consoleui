@@ -24,6 +24,7 @@ public class CheckboxPromptBuilder {
 	private List<CheckboxItemIF> itemList;
 	private Function<Map<String, Answer>, String> fnMessage;
 	private Function<Map<String, Answer>, Set<String>> fnChoices;
+	private Function<Map<String, Answer>, Boolean> fnWhen;
 
 	public CheckboxPromptBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
@@ -34,7 +35,6 @@ public class CheckboxPromptBuilder {
 	void addItem(CheckboxItemIF checkboxItem) {
 		itemList.add(checkboxItem);
 	}
-
 
 	public CheckboxPromptBuilder message(String message) {
 		this.message = message;
@@ -49,6 +49,11 @@ public class CheckboxPromptBuilder {
 		if (name == null) {
 			name = message;
 		}
+		return this;
+	}
+
+	public CheckboxPromptBuilder when(Function<Map<String, Answer>, Boolean> when) {
+		this.fnWhen = when;
 		return this;
 	}
 
@@ -73,6 +78,9 @@ public class CheckboxPromptBuilder {
 		}
 		if (fnChoices != null) {
 			checkbox.setFnChoices(fnChoices);
+		}
+		if (fnWhen != null) {
+			checkbox.setFnWhen(fnWhen);
 		}
 		promptBuilder.addPrompt(checkbox);
 		return promptBuilder;
