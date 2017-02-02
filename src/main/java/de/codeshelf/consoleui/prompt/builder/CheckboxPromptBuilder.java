@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,7 @@ public class CheckboxPromptBuilder {
 	private String message;
 	private List<CheckboxItemIF> itemList;
 	private Function<Map<String, Answer>, String> fnMessage;
+	private Function<Map<String, Answer>, Set<String>> fnChoices;
 
 	public CheckboxPromptBuilder(PromptBuilder promptBuilder) {
 		this.promptBuilder = promptBuilder;
@@ -73,6 +75,11 @@ public class CheckboxPromptBuilder {
 			// @formatter:on
 		return this;
 	}
+	
+	public CheckboxPromptBuilder choices(Function<Map<String, Answer>, Set<String>> fnChoices) {
+		this.fnChoices = fnChoices;
+		return this;
+	}
 
 	public CheckboxSeperatorBuilder newSeparator() {
 		return new CheckboxSeperatorBuilder(this);
@@ -87,6 +94,9 @@ public class CheckboxPromptBuilder {
 		Checkbox checkbox = new Checkbox(message, name, itemList);
 		if(fnMessage != null) {
 			checkbox.setFnMessage(fnMessage);
+		}
+		if(fnChoices != null) {
+			checkbox.setFnChoices(fnChoices);
 		}
 		promptBuilder.addPrompt(checkbox);
 		return promptBuilder;

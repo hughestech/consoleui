@@ -2,15 +2,20 @@ package de.codeshelf.consoleui.prompt;
 
 import de.codeshelf.consoleui.elements.Checkbox;
 import de.codeshelf.consoleui.elements.items.ConsoleUIItemIF;
+import de.codeshelf.consoleui.elements.items.ListItemIF;
 import de.codeshelf.consoleui.elements.items.impl.CheckboxItem;
+import de.codeshelf.consoleui.elements.items.impl.ListItem;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import de.codeshelf.consoleui.prompt.renderer.CUIRenderer;
 import org.fusesource.jansi.Ansi;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * CheckboxPrompt implements the checkbox choice handling.
@@ -73,6 +78,14 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
 				: this.checkbox.getMessage();
 		
 		itemList = this.checkbox.getCheckboxItemList();
+		
+		if(checkbox.getFnChoices() != null) {
+			 List<CheckboxItem> items = checkbox.getFnChoices().apply(answers)
+										.stream()
+										.map(CheckboxItem::new)
+										.collect(Collectors.toList());
+			 itemList = new ArrayList<>(items);
+		}
 
 		this.reader.addAllowedPrintableKey('j');
 		this.reader.addAllowedPrintableKey('k');
