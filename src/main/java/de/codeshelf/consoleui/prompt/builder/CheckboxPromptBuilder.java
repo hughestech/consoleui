@@ -72,15 +72,6 @@ public class CheckboxPromptBuilder {
 		return this;
 	}
 
-	public CheckboxSeperatorBuilder newSeparator() {
-		return new CheckboxSeperatorBuilder(this);
-	}
-
-	public CheckboxSeperatorBuilder newSeparator(String text) {
-		CheckboxSeperatorBuilder checkboxSeperatorBuilder = new CheckboxSeperatorBuilder(this);
-		return checkboxSeperatorBuilder.text(text);
-	}
-
 	public PromptBuilder build() {
 		Checkbox checkbox = new Checkbox(message, name, itemList);
 		if (fnMessage != null) {
