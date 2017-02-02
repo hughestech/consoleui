@@ -3,7 +3,7 @@ package de.codeshelf.consoleui;
 import de.codeshelf.consoleui.elements.ConfirmChoice;
 import de.codeshelf.consoleui.prompt.ConfirmResult;
 import de.codeshelf.consoleui.prompt.ConsolePrompt;
-import de.codeshelf.consoleui.prompt.PromtResultItemIF;
+import de.codeshelf.consoleui.prompt.Answer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 import jline.TerminalFactory;
 import jline.console.completer.StringsCompleter;
@@ -93,7 +93,7 @@ public class Basic {
               .defaultValue(ConfirmChoice.ConfirmationValue.YES)
               .addPrompt();
 
-      HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
+      HashMap<String, ? extends Answer> result = prompt.prompt(promptBuilder.build());
       System.out.println("result = " + result);
 
       ConfirmResult delivery = (ConfirmResult) result.get("delivery");

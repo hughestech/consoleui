@@ -5,7 +5,7 @@ package de.codeshelf.consoleui.prompt;
  * <p>
  * Created by Andreas Wegmann on 03.02.16.
  */
-public class ListResult implements PromtResultItemIF {
+public class ListResult implements Answer {
 
   String selectedId;
 

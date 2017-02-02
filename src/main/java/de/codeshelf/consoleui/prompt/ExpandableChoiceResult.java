@@ -7,7 +7,7 @@ package de.codeshelf.consoleui.prompt;
  * User: Andreas Wegmann<p>
  * Date: 03.02.16
  */
-public class ExpandableChoiceResult implements PromtResultItemIF {
+public class ExpandableChoiceResult implements Answer {
   String selectedId;
 
   /**

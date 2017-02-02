@@ -9,7 +9,7 @@ import java.util.HashSet;
  * User: Andreas Wegmann
  * Date: 03.02.16
  */
-public class CheckboxResult implements PromtResultItemIF {
+public class CheckboxResult implements Answer {
   HashSet<String> selectedIds;
 
   /**

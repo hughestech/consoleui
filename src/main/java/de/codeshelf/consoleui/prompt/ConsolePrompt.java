@@ -81,7 +81,7 @@ public class ConsolePrompt {
 	 * of the elements is processed and the user entries and answers are filled
 	 * in to the result map. The result map contains the key of each promtable
 	 * element and the user entry as an object implementing
-	 * {@link PromtResultItemIF}.
+	 * {@link Answer}.
 	 *
 	 * @param promptableElementList
 	 *            the list of questions / promts to ask the user for.
@@ -90,31 +90,31 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	public HashMap<String, ? extends PromtResultItemIF> prompt(List<PromptableElementIF> promptableElementList) throws IOException {
-		HashMap<String, PromtResultItemIF> resultMap = new HashMap<String, PromtResultItemIF>();
+	public HashMap<String, ? extends Answer> prompt(List<PromptableElementIF> promptableElementList) throws IOException {
+		HashMap<String, Answer> answers = new HashMap<String, Answer>();
 
 		for (int i = 0; i < promptableElementList.size(); i++) {
 			PromptableElementIF promptableElement = promptableElementList.get(i);
 			if (promptableElement instanceof ListChoice) {
 				ListResult result = doPrompt((ListChoice) promptableElement);
-				resultMap.put(promptableElement.getName(), result);
+				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof InputValue) {
 				InputResult result = doPrompt((InputValue) promptableElement);
-				resultMap.put(promptableElement.getName(), result);
+				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof ExpandableChoice) {
 				ExpandableChoiceResult result = doPrompt((ExpandableChoice) promptableElement);
-				resultMap.put(promptableElement.getName(), result);
+				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof Checkbox) {
 				CheckboxResult result = doPrompt((Checkbox) promptableElement);
-				resultMap.put(promptableElement.getName(), result);
+				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof ConfirmChoice) {
 				ConfirmResult result = doPrompt((ConfirmChoice) promptableElement);
-				resultMap.put(promptableElement.getName(), result);
+				answers.put(promptableElement.getName(), result);
 			} else {
 				throw new IllegalArgumentException("wrong type of promptable element");
 			}
 		}
-		return resultMap;
+		return answers;
 	}
 
 	/**

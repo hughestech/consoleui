@@ -9,7 +9,7 @@ import de.codeshelf.consoleui.elements.ConfirmChoice;
  * User: Andreas Wegmann
  * Date: 03.02.16
  */
-public class ConfirmResult implements PromtResultItemIF {
+public class ConfirmResult implements Answer {
   ConfirmChoice.ConfirmationValue confirmed;
 
   /**
