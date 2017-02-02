@@ -8,6 +8,7 @@ import java.util.function.Function;
 import de.codeshelf.consoleui.elements.InputValue;
 import de.codeshelf.consoleui.prompt.answer.Answer;
 import jline.console.completer.Completer;
+import jline.console.completer.StringsCompleter;
 
 /**
  * Created by andy on 22.01.16.
@@ -49,11 +50,11 @@ public class InputPromptBuilder {
 		return this;
 	}
 
-	public InputPromptBuilder addCompleter(Completer completer) {
+	public InputPromptBuilder choices(String... completer) {
 		if (completers == null) {
 			completers = new ArrayList<Completer>();
 		}
-		this.completers.add(completer);
+		this.completers.add(new StringsCompleter(completer));
 		return this;
 	}
 

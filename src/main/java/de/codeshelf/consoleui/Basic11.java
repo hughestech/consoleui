@@ -44,7 +44,7 @@ public class Basic11 {
 	              .message(anwer -> "Digite o nome")
 	              .required()
 	              //.mask('*')
-	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
+	              .choices("Jim", "Jack", "John")
 	        .build();
 			// @formatter:on
 

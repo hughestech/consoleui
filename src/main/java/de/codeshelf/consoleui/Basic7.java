@@ -13,7 +13,6 @@ import de.codeshelf.consoleui.prompt.ConsolePrompt;
 import de.codeshelf.consoleui.prompt.answer.Answer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 import jline.TerminalFactory;
-import jline.console.completer.StringsCompleter;
 
 /**
  * User: Andreas Wegmann Date: 29.11.15
@@ -34,7 +33,7 @@ public class Basic7 {
 			promptBuilder.inputPrompt("name")
 	              .message(anwer -> "Digite o nome")
 	              //.mask('*')
-	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
+	              .choices("Jim", "Jack", "John")
 	              .build();
 			// @formatter:on
 

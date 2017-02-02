@@ -44,7 +44,7 @@ public class Basic9 {
 	              .message(anwer -> "Digite o nome")
 	              .required()
 	              //.mask('*')
-	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
+	              .choices("Jim", "Jack", "John")
 	              .when(answers -> answers.get("pizzatype").value().equals("Margherita"))
 	        .build();
 			// @formatter:on

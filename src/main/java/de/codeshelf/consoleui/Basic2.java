@@ -41,7 +41,7 @@ public class Basic2 {
 			promptBuilder.inputPrompt("name")
 	              .message(anwer -> "Digite o nome: "+anwer.get("pizzatype").value())
 	              //.mask('*')
-	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
+	              .choices("Jim", "Jack", "John")
 	        .build();
 			// @formatter:on
 

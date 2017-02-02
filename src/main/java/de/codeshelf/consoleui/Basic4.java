@@ -34,7 +34,7 @@ public class Basic4 {
 			promptBuilder.inputPrompt("name")
 	              .message(anwer -> "Digite o nome")
 	              //.mask('*')
-	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
+	              .choices("Jim", "Jack", "John")
 	              .build();
 			// @formatter:on
 
