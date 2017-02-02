@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import de.codeshelf.consoleui.elements.InputValue;
-import de.codeshelf.consoleui.prompt.Answer;
+import de.codeshelf.consoleui.prompt.answer.Answer;
 import de.codeshelf.consoleui.util.Validator;
 import jline.console.completer.Completer;
 

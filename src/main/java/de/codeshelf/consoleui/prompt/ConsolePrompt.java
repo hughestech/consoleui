@@ -1,6 +1,12 @@
 package de.codeshelf.consoleui.prompt;
 
 import de.codeshelf.consoleui.elements.*;
+import de.codeshelf.consoleui.prompt.answer.Answer;
+import de.codeshelf.consoleui.prompt.answer.CheckboxAnswer;
+import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
+import de.codeshelf.consoleui.prompt.answer.ExpandableChoiceAnswer;
+import de.codeshelf.consoleui.prompt.answer.InputAnswer;
+import de.codeshelf.consoleui.prompt.answer.ListAnswer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 
 import java.io.IOException;

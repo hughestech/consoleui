@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 import de.codeshelf.consoleui.elements.items.CheckboxItemIF;
-import de.codeshelf.consoleui.prompt.Answer;
+import de.codeshelf.consoleui.prompt.answer.Answer;
 
 /**
  * User: Andreas Wegmann Date: 01.01.16

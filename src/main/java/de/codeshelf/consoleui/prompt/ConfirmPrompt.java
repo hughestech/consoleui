@@ -1,6 +1,8 @@
 package de.codeshelf.consoleui.prompt;
 
 import de.codeshelf.consoleui.elements.ConfirmChoice;
+import de.codeshelf.consoleui.prompt.answer.Answer;
+import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import de.codeshelf.consoleui.prompt.renderer.CUIRenderer;

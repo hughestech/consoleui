@@ -2,7 +2,7 @@ package de.codeshelf.consoleui.elements;
 
 import de.codeshelf.consoleui.elements.items.ConsoleUIItemIF;
 import de.codeshelf.consoleui.elements.items.ListItemIF;
-import de.codeshelf.consoleui.prompt.Answer;
+import de.codeshelf.consoleui.prompt.answer.Answer;
 
 import java.util.ArrayList;
 import java.util.List;

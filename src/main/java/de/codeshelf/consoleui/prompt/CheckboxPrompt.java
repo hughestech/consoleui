@@ -5,6 +5,8 @@ import de.codeshelf.consoleui.elements.items.ConsoleUIItemIF;
 import de.codeshelf.consoleui.elements.items.ListItemIF;
 import de.codeshelf.consoleui.elements.items.impl.CheckboxItem;
 import de.codeshelf.consoleui.elements.items.impl.ListItem;
+import de.codeshelf.consoleui.prompt.answer.Answer;
+import de.codeshelf.consoleui.prompt.answer.CheckboxAnswer;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import de.codeshelf.consoleui.prompt.renderer.CUIRenderer;
 import org.fusesource.jansi.Ansi;

@@ -12,6 +12,8 @@ import org.fusesource.jansi.Ansi.Color;
 import org.fusesource.jansi.Ansi.Erase;
 
 import de.codeshelf.consoleui.elements.InputValue;
+import de.codeshelf.consoleui.prompt.answer.Answer;
+import de.codeshelf.consoleui.prompt.answer.InputAnswer;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF.SpecialKey;

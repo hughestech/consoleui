@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import de.codeshelf.consoleui.elements.ListChoice;
 import de.codeshelf.consoleui.elements.items.ListItemIF;
 import de.codeshelf.consoleui.elements.items.impl.ListItem;
-import de.codeshelf.consoleui.prompt.Answer;
+import de.codeshelf.consoleui.prompt.answer.Answer;
 
 /**
  * Created by andy on 22.01.16.

@@ -1,4 +1,4 @@
-package de.codeshelf.consoleui.prompt;
+package de.codeshelf.consoleui.prompt.answer;
 
 import java.util.HashSet;
 

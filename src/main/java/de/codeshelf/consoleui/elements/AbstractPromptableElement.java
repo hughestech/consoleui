@@ -3,7 +3,7 @@ package de.codeshelf.consoleui.elements;
 import java.util.Map;
 import java.util.function.Function;
 
-import de.codeshelf.consoleui.prompt.Answer;
+import de.codeshelf.consoleui.prompt.answer.Answer;
 
 /**
  * User: Andreas Wegmann Date: 06.01.16

@@ -10,9 +10,9 @@ import java.util.HashSet;
 import org.fusesource.jansi.AnsiConsole;
 
 import de.codeshelf.consoleui.elements.ConfirmChoice;
-import de.codeshelf.consoleui.prompt.Answer;
-import de.codeshelf.consoleui.prompt.ConfirmAnswer;
 import de.codeshelf.consoleui.prompt.ConsolePrompt;
+import de.codeshelf.consoleui.prompt.answer.Answer;
+import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 import jline.TerminalFactory;
 import jline.console.completer.StringsCompleter;
