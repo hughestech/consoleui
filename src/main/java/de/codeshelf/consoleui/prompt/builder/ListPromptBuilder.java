@@ -25,16 +25,9 @@ public class ListPromptBuilder {
 	private Function<Map<String, Answer>, String> fnMessage;
 	private Function<Map<String, Answer>, Set<String>> fnChoices;
 
-	public ListPromptBuilder(PromptBuilder promptBuilder) {
+	public ListPromptBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
-	}
-
-	public ListPromptBuilder name(String name) {
 		this.name = name;
-		if (message != null) {
-			this.message = name;
-		}
-		return this;
 	}
 
 	public ListPromptBuilder message(String message) {

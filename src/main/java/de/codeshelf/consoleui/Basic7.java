@@ -39,8 +39,7 @@ public class Basic7 {
 			// @formatter:on
 
 			//// @formatter:off
-		    promptBuilder.listPrompt()
-	              .name("pizzatype")
+		    promptBuilder.listPrompt("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
 	              .choices("Cheese", "Bacon", "Açai")
  	              .build();

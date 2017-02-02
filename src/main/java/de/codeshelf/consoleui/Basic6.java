@@ -41,8 +41,7 @@ public class Basic6 {
 			// @formatter:on
 
 			//// @formatter:off
-		    promptBuilder.listPrompt()
-	              .name("pizzatype")
+		    promptBuilder.listPrompt("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
 	              .choices(anwers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              .build();

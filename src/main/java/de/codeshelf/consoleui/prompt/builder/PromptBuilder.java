@@ -25,8 +25,8 @@ public class PromptBuilder {
 		return new InputValueBuilder(this, name);
 	}
 
-	public ListPromptBuilder listPrompt() {
-		return new ListPromptBuilder(this);
+	public ListPromptBuilder listPrompt(String name) {
+		return new ListPromptBuilder(this, name);
 	}
 	
 	/*
