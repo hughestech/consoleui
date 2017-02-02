@@ -3,7 +3,9 @@ package de.codeshelf.consoleui;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.fusesource.jansi.AnsiConsole;
 
@@ -18,7 +20,7 @@ import jline.console.completer.StringsCompleter;
 /**
  * User: Andreas Wegmann Date: 29.11.15
  */
-public class Basic5 {
+public class Basic6 {
 
 	public static void main(String[] args) throws InterruptedException {
 		AnsiConsole.systemInstall();
@@ -43,7 +45,7 @@ public class Basic5 {
 		    promptBuilder.createListPrompt()
 	              .name("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
-	              .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
+	              .choices(anwers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              .build();
 		    // @formatter:on
 

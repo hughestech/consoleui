@@ -1,16 +1,20 @@
 package de.codeshelf.consoleui.prompt;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import de.codeshelf.consoleui.elements.ListChoice;
 import de.codeshelf.consoleui.elements.items.ConsoleUIItemIF;
+import de.codeshelf.consoleui.elements.items.ListItemIF;
 import de.codeshelf.consoleui.elements.items.impl.ListItem;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import de.codeshelf.consoleui.prompt.renderer.CUIRenderer;
-
-import java.io.IOException;
-import java.util.HashMap;
-
-import static org.fusesource.jansi.Ansi.ansi;
 
 /**
  * ListPrompt implements the list choice handling.
@@ -32,7 +36,17 @@ public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListC
 		this.listChoice = listChoice;
 		this.message = this.listChoice.getFnMessage() != null ? this.listChoice.getFnMessage().apply(answers)
 				: this.listChoice.getMessage();
+		
 		itemList = listChoice.getListItemList();
+		
+		if(listChoice.getFnChoices() != null) {
+			 List<ListItemIF> items = listChoice.getFnChoices().apply(answers)
+										.stream()
+										.map(ListItem::new)
+										.collect(Collectors.toList());
+			 itemList = new ArrayList<>(items);
+		}
+		
 		if (reader == null) {
 			reader = new ConsoleReaderImpl();
 		}

@@ -1,17 +1,18 @@
 package de.codeshelf.consoleui.prompt.builder;
 
-import de.codeshelf.consoleui.elements.ListChoice;
-import de.codeshelf.consoleui.elements.items.ListItemIF;
-import de.codeshelf.consoleui.elements.items.impl.ListItem;
-import de.codeshelf.consoleui.prompt.Answer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
+
+import de.codeshelf.consoleui.elements.ListChoice;
+import de.codeshelf.consoleui.elements.items.ListItemIF;
+import de.codeshelf.consoleui.elements.items.impl.ListItem;
+import de.codeshelf.consoleui.prompt.Answer;
 
 /**
  * Created by andy on 22.01.16.
@@ -22,6 +23,7 @@ public class ListPromptBuilder {
 	private String message;
 	private List<ListItemIF> itemList = new ArrayList<ListItemIF>();
 	private Function<Map<String, Answer>, String> fnMessage;
+	private Function<Map<String, Answer>, Set<String>> fnChoices;
 
 	public ListPromptBuilder(PromptBuilder promptBuilder) {
 		this.promptBuilder = promptBuilder;
@@ -60,10 +62,18 @@ public class ListPromptBuilder {
 		return this;
 	}
 
+	public ListPromptBuilder choices(Function<Map<String, Answer>, Set<String>> fnChoices) {
+		this.fnChoices = fnChoices;
+		return this;
+	}
+
 	public PromptBuilder build() {
 		ListChoice listChoice = new ListChoice(message, name, itemList);
 		if (fnMessage != null) {
 			listChoice.setFnMessage(fnMessage);
+		}
+		if (fnChoices != null) {
+			listChoice.setFnChoices(fnChoices);
 		}
 		promptBuilder.addPrompt(listChoice);
 		return promptBuilder;
