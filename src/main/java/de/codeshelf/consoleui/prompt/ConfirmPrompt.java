@@ -6,6 +6,7 @@ import de.codeshelf.consoleui.prompt.reader.ReaderIF;
 import de.codeshelf.consoleui.prompt.renderer.CUIRenderer;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -47,7 +48,7 @@ public class ConfirmPrompt extends AbstractPrompt implements PromptIF<ConfirmCho
    * @return {@link ConfirmAnswer} object with answer.
    * @throws IOException can be thrown by the console reader.
    */
-  public ConfirmAnswer prompt(ConfirmChoice confirmChoice) throws IOException {
+  public ConfirmAnswer prompt(ConfirmChoice confirmChoice, HashMap<String, Answer> answers) throws IOException {
     givenAnswer = null;
     this.confirmChoice = confirmChoice;
 

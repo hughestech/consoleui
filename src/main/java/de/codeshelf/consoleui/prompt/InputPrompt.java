@@ -3,6 +3,7 @@ package de.codeshelf.consoleui.prompt;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.plaf.InputMapUIResource;
@@ -43,7 +44,7 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	public InputPrompt() throws IOException {
 	}
 
-	public InputAnswer prompt(InputValue inputElement) throws IOException {
+	public InputAnswer prompt(InputValue inputElement, HashMap<String, Answer> answers) throws IOException {
 		this.inputElement = inputElement;
 
 		/*

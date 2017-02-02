@@ -96,19 +96,19 @@ public class ConsolePrompt {
 		for (int i = 0; i < promptableElementList.size(); i++) {
 			PromptableElementIF promptableElement = promptableElementList.get(i);
 			if (promptableElement instanceof ListChoice) {
-				ListAnswer result = doPrompt((ListChoice) promptableElement);
+				ListAnswer result = doPrompt((ListChoice) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof InputValue) {
-				InputAnswer result = doPrompt((InputValue) promptableElement);
+				InputAnswer result = doPrompt((InputValue) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof ExpandableChoice) {
-				ExpandableChoiceAnswer result = doPrompt((ExpandableChoice) promptableElement);
+				ExpandableChoiceAnswer result = doPrompt((ExpandableChoice) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof Checkbox) {
-				CheckboxAnswer result = doPrompt((Checkbox) promptableElement);
+				CheckboxAnswer result = doPrompt((Checkbox) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof ConfirmChoice) {
-				ConfirmAnswer result = doPrompt((ConfirmChoice) promptableElement);
+				ConfirmAnswer result = doPrompt((ConfirmChoice) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else {
 				throw new IllegalArgumentException("wrong type of promptable element");
@@ -126,8 +126,8 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private ConfirmAnswer doPrompt(ConfirmChoice confirmChoice) throws IOException {
-		return getConfirmPrompt().prompt(confirmChoice);
+	private ConfirmAnswer doPrompt(ConfirmChoice confirmChoice, HashMap<String, Answer> answers) throws IOException {
+		return getConfirmPrompt().prompt(confirmChoice, answers);
 	}
 
 	/**
@@ -139,8 +139,8 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private ListAnswer doPrompt(ListChoice listChoice) throws IOException {
-		return getListPrompt().prompt(listChoice);
+	private ListAnswer doPrompt(ListChoice listChoice, HashMap<String, Answer> answers) throws IOException {
+		return getListPrompt().prompt(listChoice, answers);
 	}
 
 	/**
@@ -152,8 +152,8 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private InputAnswer doPrompt(InputValue inputValue) throws IOException {
-		return getInputPrompt().prompt(inputValue);
+	private InputAnswer doPrompt(InputValue inputValue, HashMap<String, Answer> answers) throws IOException {
+		return getInputPrompt().prompt(inputValue, answers);
 	}
 
 	/**
@@ -165,8 +165,8 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private CheckboxAnswer doPrompt(Checkbox checkbox) throws IOException {
-		return getCheckboxPrompt().prompt(checkbox);
+	private CheckboxAnswer doPrompt(Checkbox checkbox, HashMap<String, Answer> answers) throws IOException {
+		return getCheckboxPrompt().prompt(checkbox, answers);
 	}
 
 	/**
@@ -180,8 +180,8 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
-	private ExpandableChoiceAnswer doPrompt(ExpandableChoice expandableChoice) throws IOException {
-		return getExpandableChoicePrompt().prompt(expandableChoice);
+	private ExpandableChoiceAnswer doPrompt(ExpandableChoice expandableChoice, HashMap<String, Answer> answers) throws IOException {
+		return getExpandableChoicePrompt().prompt(expandableChoice, answers);
 	}
 
 	/**

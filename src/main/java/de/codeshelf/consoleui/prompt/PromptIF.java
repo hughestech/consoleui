@@ -3,6 +3,7 @@ package de.codeshelf.consoleui.prompt;
 import de.codeshelf.consoleui.elements.PromptableElementIF;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Interface for all prompt implementation.
@@ -18,5 +19,5 @@ public interface PromptIF<T extends PromptableElementIF, R extends Answer> {
    * @return the prompt result
    * @throws IOException may be thrown by getting the users input.
    */
-  R prompt(T promptableElement) throws IOException;
+  R prompt(T promptableElement, HashMap<String, Answer> answers) throws IOException;
 }
