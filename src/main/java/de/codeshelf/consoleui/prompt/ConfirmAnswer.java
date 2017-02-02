@@ -33,12 +33,12 @@ public class ConfirmAnswer implements Answer {
 	}
 
 	@Override
-	public String getValue() {
+	public String value() {
 		return this.confirmed.name();
 	}
 
 	@Override
-	public HashSet<String> getList() {
+	public HashSet<String> list() {
 		return null;
 	}
 

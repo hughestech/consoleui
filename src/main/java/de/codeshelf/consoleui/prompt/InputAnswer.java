@@ -18,12 +18,12 @@ public class InputAnswer implements Answer {
 	}
 
 	@Override
-	public String getValue() {
+	public String value() {
 		return this.input;
 	}
 
 	@Override
-	public HashSet<String> getList() {
+	public HashSet<String> list() {
 		return null;
 	}
 

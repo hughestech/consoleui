@@ -31,12 +31,12 @@ public class CheckboxAnswer implements Answer {
 	}
 
 	@Override
-	public String getValue() {
+	public String value() {
 		return null;
 	}
 
 	@Override
-	public HashSet<String> getList() {
+	public HashSet<String> list() {
 		return this.selectedIds;
 	}
 
