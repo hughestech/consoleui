@@ -41,7 +41,7 @@ public class Basic3 {
 				.newItem().text("Hawai").add()
 				.newItem().text("Quattro Stagioni").add()
 				*/
-			.addPrompt();
+			.build();
 			// @formatter:on
 
 			//// @formatter:off
@@ -50,7 +50,7 @@ public class Basic3 {
 	              .message(anwer -> "Digite o nome: "+anwer.get("pizzatype").value())
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
-	        .addPrompt();
+	        .build();
 			// @formatter:on
 
 

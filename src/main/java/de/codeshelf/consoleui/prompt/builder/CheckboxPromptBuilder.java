@@ -49,7 +49,7 @@ public class CheckboxPromptBuilder {
     return checkboxItemBuilder.name(name);
   }
 
-  public PromptBuilder addPrompt() {
+  public PromptBuilder build() {
     Checkbox checkbox = new Checkbox(message, name, itemList);
     promptBuilder.addPrompt(checkbox);
     return promptBuilder;

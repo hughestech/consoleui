@@ -26,20 +26,20 @@ public class PromptBuilderTest {
             .name("wantapizza")
             .message("Do you want to order a pizza?")
             .defaultValue(ConfirmChoice.ConfirmationValue.YES)
-            .addPrompt();
+            .build();
 
     promptBuilder.createInputPrompt()
             .name("name")
             .message("Please enter your name")
             .defaultValue("John Doe")
             .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
-            .addPrompt();
+            .build();
 
     promptBuilder.createListPrompt()
             .name("pizzatype")
             .message("Which pizza do you want?")
             .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
-            .addPrompt();
+            .build();
 
     promptBuilder.createCheckboxPrompt()
             .name("topping")
@@ -60,7 +60,7 @@ public class PromptBuilderTest {
             .newSeparator("and our speciality...").add()
 
             .newItem("special").text("Anchovies, and olives").checked(true).add()
-            .addPrompt();
+            .build();
 
     assertNotNull(promptBuilder);
     promptBuilder.createChoicePrompt()
@@ -72,7 +72,7 @@ public class PromptBuilderTest {
             .newItem("master").message("Master Card").key('m').add()
             .newSeparator("online payment").add()
             .newItem("paypal").message("Paypal").key('p').add()
-            .addPrompt();
+            .build();
 
     List<PromptableElementIF> promptableElementList = promptBuilder.build();
 

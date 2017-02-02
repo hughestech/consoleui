@@ -35,7 +35,7 @@ public class Basic2 {
 				.name("pizzatype")
 				.message("Escolha a pizza ")
 				.choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
-			.addPrompt();
+			.build();
 			// @formatter:on
 
 			//// @formatter:off
@@ -44,7 +44,7 @@ public class Basic2 {
 	              .message(anwer -> "Digite o nome: "+anwer.get("pizzatype").value())
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
-	        .addPrompt();
+	        .build();
 			// @formatter:on
 
 

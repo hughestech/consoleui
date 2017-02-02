@@ -60,7 +60,7 @@ public class ListPromptBuilder {
 		return this;
 	}
 
-	public PromptBuilder addPrompt() {
+	public PromptBuilder build() {
 		ListChoice listChoice = new ListChoice(message, name, itemList);
 		if (fnMessage != null) {
 			listChoice.setFnMessage(fnMessage);

@@ -64,7 +64,7 @@ public class InputValueBuilder {
 		return this;
 	}
 
-	public PromptBuilder addPrompt() {
+	public PromptBuilder build() {
 		InputValue inputValue = new InputValue(name, message, null, defaultValue);
 		if (fnMessage != null) {
 			inputValue.setFnMessage(fnMessage);

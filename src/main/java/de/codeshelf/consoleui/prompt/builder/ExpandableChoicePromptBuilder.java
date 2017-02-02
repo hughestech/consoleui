@@ -48,7 +48,7 @@ public class ExpandableChoicePromptBuilder {
     return expandableChoiceItemBuilder.name(name);
   }
 
-  public PromptBuilder addPrompt() {
+  public PromptBuilder build() {
     ExpandableChoice expandableChoice = new ExpandableChoice(message, name, itemList);
     promptBuilder.addPrompt(expandableChoice);
     return promptBuilder;

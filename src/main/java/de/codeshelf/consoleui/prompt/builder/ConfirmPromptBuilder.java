@@ -37,7 +37,7 @@ public class ConfirmPromptBuilder {
     return this;
   }
 
-  public PromptBuilder addPrompt() {
+  public PromptBuilder build() {
     promptBuilder.addPrompt(new ConfirmChoice(message, name, defaultConfirmationValue));
     return promptBuilder;
   }

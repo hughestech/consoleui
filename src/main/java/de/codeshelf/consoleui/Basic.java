@@ -36,7 +36,7 @@ public class Basic {
 	              .message(anwer -> "Digite o nome")
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
-	              .addPrompt();
+	              .build();
 			// @formatter:on
 
 			//// @formatter:off
@@ -44,7 +44,7 @@ public class Basic {
 	              .name("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
 	              .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
-	              .addPrompt();
+	              .build();
 		    // @formatter:on
 
 		    //// @formatter:off
@@ -67,7 +67,7 @@ public class Basic {
 	              .newSeparator("and our speciality...").add()
 	
 	              .newItem("special").text("Anchovies, and olives").checked(true).add()
-	              .addPrompt();
+	              .build();
 	         // @formatter:on
 
             //// @formatter:off
@@ -80,7 +80,7 @@ public class Basic {
 		              .newItem("master").message("Master Card").key('m').add()
 		              .newSeparator("online payment").add()
 		              .newItem("paypal").message("Paypal").key('p').add()
-		              .addPrompt();
+		              .build();
 		    // @formatter:on
 
 			//// @formatter:off
@@ -88,7 +88,7 @@ public class Basic {
 		          .name("delivery")
 		          .message("Is this pizza for delivery?")
 		          .defaultValue(ConfirmChoice.ConfirmationValue.YES)
-		          .addPrompt();
+		          .build();
 		    // @formatter:on
 
 			HashMap<String, ? extends Answer> result = prompt.prompt(promptBuilder.build());
