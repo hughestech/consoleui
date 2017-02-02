@@ -21,13 +21,9 @@ public class InputValueBuilder {
 	private Function<String, Object> validator;
 	private Function<Map<String, Answer>, String> fnMessage;
 
-	public InputValueBuilder(PromptBuilder promptBuilder) {
+	public InputValueBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
-	}
-
-	public InputValueBuilder name(String name) {
 		this.name = name;
-		return this;
 	}
 
 	public InputValueBuilder defaultValue(String defaultValue) {

@@ -33,8 +33,7 @@ public class Basic {
 			PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
-			promptBuilder.inputPrompt()
-	              .name("name")
+			promptBuilder.inputPrompt("name")
 	              .message(anwer -> "Digite o nome")
 	              .validate(answer -> {
 	            	  if(answer == null) {

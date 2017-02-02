@@ -33,8 +33,7 @@ public class Basic6 {
 			PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
-			promptBuilder.inputPrompt()
-	              .name("name")
+			promptBuilder.inputPrompt("name")
 	              .message(anwer -> "Digite o nome")
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))

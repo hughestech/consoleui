@@ -9,10 +9,8 @@ import java.util.HashSet;
 
 import org.fusesource.jansi.AnsiConsole;
 
-import de.codeshelf.consoleui.elements.ConfirmChoice;
 import de.codeshelf.consoleui.prompt.ConsolePrompt;
 import de.codeshelf.consoleui.prompt.answer.Answer;
-import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 import jline.TerminalFactory;
 import jline.console.completer.StringsCompleter;
@@ -33,8 +31,7 @@ public class Basic7 {
 			PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
-			promptBuilder.inputPrompt()
-	              .name("name")
+			promptBuilder.inputPrompt("name")
 	              .message(anwer -> "Digite o nome")
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
@@ -49,7 +46,7 @@ public class Basic7 {
  	              .build();
 		    // @formatter:on
 
-		    //// @formatter:off
+			//// @formatter:off
             promptBuilder.checkboxPrompt()
             
 	              .name("topping")
@@ -57,7 +54,6 @@ public class Basic7 {
 	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              .build();
 	         // @formatter:on
-
 
 			HashMap<String, ? extends Answer> result = prompt.prompt(promptBuilder.build());
 			System.out.println("result = " + result);
