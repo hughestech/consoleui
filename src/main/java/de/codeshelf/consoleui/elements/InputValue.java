@@ -16,7 +16,7 @@ public class InputValue extends AbstractPromptableElement {
 	private List<Completer> completer;
 	private Character mask;
 	private Validator validator;
-
+	
 	public InputValue(String name, String message) {
 		super(message, name);
 		this.value = null;

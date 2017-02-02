@@ -35,7 +35,7 @@ public class Basic {
 
       promptBuilder.createInputPrompt()
               .name("name")
-              .message("Please enter your name")
+              .message(anwer -> "Digite o nome")
               //.mask('*')
               .validate(input -> {
             	  if(input == null || input.length() < 3) {

@@ -40,12 +40,15 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	Character mask;
 	List<Completer> completer;
 	private String prompt;
+	private String message;
 
 	public InputPrompt() throws IOException {
 	}
 
 	public InputAnswer prompt(InputValue inputElement, HashMap<String, Answer> answers) throws IOException {
 		this.inputElement = inputElement;
+		this.message = this.inputElement.getFnMessage() != null ? this.inputElement.getFnMessage().apply(answers)
+				: this.inputElement.getMessage();
 
 		/*
 		 * if (reader == null) { reader = new ConsoleReaderImpl(); }
@@ -78,14 +81,14 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 			}
 		}
 
-		renderMessagePromptAndResult(inputElement.getMessage(), result);
+		renderMessagePromptAndResult(this.message, result);
 
 		return new InputAnswer(lineInput);
 	}
 
 	private void prompt() {
 		String optionalDefaultValue = itemRenderer.renderOptionalDefaultValue(this.inputElement);
-		this.prompt = renderMessagePrompt(this.inputElement.getMessage(), invalidInput) + optionalDefaultValue;
+		this.prompt = renderMessagePrompt(this.message, invalidInput) + optionalDefaultValue;
 	}
 
 	private void read(InputValue inputElement, String prompt, List<Completer> completer, Character mask) throws IOException {

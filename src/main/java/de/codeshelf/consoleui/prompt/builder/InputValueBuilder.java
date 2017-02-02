@@ -1,10 +1,13 @@
 package de.codeshelf.consoleui.prompt.builder;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.function.Function;
+
 import de.codeshelf.consoleui.elements.InputValue;
+import de.codeshelf.consoleui.prompt.Answer;
 import de.codeshelf.consoleui.util.Validator;
 import jline.console.completer.Completer;
-
-import java.util.ArrayList;
 
 /**
  * Created by andy on 22.01.16.
@@ -17,6 +20,7 @@ public class InputValueBuilder {
 	private Character mask;
 	private ArrayList<Completer> completers;
 	private Validator validator;
+	private Function<Map<String, Answer>, String> fnMessage;
 
 	public InputValueBuilder(PromptBuilder promptBuilder) {
 		this.promptBuilder = promptBuilder;
@@ -34,6 +38,11 @@ public class InputValueBuilder {
 
 	public InputValueBuilder message(String message) {
 		this.message = message;
+		return this;
+	}
+
+	public InputValueBuilder message(Function<Map<String, Answer>, String> message) {
+		this.fnMessage = message;
 		return this;
 	}
 
@@ -57,6 +66,9 @@ public class InputValueBuilder {
 
 	public PromptBuilder addPrompt() {
 		InputValue inputValue = new InputValue(name, message, null, defaultValue);
+		if (fnMessage != null) {
+			inputValue.setFnMessage(fnMessage);
+		}
 		if (completers != null) {
 			inputValue.setCompleter(completers);
 		}
