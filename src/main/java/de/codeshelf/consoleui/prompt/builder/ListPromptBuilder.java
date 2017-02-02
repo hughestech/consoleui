@@ -51,11 +51,11 @@ public class ListPromptBuilder {
 		return this;
 	}
 
-	public ListPromptBuilder choices(String... items) {
+	public ListPromptBuilder choices(String... choices) {
 		//// @formatter:off
-		Arrays.asList(items).stream()
+		Arrays.asList(choices).stream()
 			.filter(StringUtils::isNotBlank)
-			.forEach(item -> itemList.add(new ListItem(item)));
+			.forEach(choice -> itemList.add(new ListItem(choice)));
 		// @formatter:on
 		return this;
 	}
