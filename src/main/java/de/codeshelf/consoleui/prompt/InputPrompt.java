@@ -5,11 +5,13 @@ import static org.fusesource.jansi.Ansi.ansi;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.fusesource.jansi.Ansi.Color;
 
 import de.codeshelf.consoleui.elements.InputValue;
+import de.codeshelf.consoleui.exception.InvalidInputException;
 import de.codeshelf.consoleui.prompt.answer.Answer;
 import de.codeshelf.consoleui.prompt.answer.InputAnswer;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
@@ -103,20 +105,14 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	}
 
 	private void validateInput(InputValue inputElement, String lineInput, ReaderIF.ReaderInput readerInput) throws IOException {
-		Function<String, Object>  validator = inputElement.getValidator();
+		Consumer<String> validator = inputElement.getValidator();
 		if (validator != null) {
 			invalidInput = false;
-			Object validationResult = validator.apply(lineInput);
-			if (validationResult instanceof Boolean) {
-				boolean booleanValidationResult = Boolean.valueOf(validationResult.toString());
-				if (!booleanValidationResult) {
-					invalidInput = true;
-					System.out.println(ansi().cursorUp(renderHeight));
-				}
-			} else if (validationResult instanceof String) {
-				String stringValidationResult = (String) validationResult;
+			try {
+				validator.accept(lineInput);
+			} catch (InvalidInputException e) {
 				invalidInput = true;
-				System.out.print(ansi().cursorDown(renderHeight).fg(Color.RED).a(">> ").reset().a(stringValidationResult));
+				System.out.print(ansi().cursorDown(renderHeight).fg(Color.RED).a(">> ").reset().a(e.getMessage()));
 				System.out.println(ansi().cursorUp(renderHeight).eraseLine());
 			}
 		}

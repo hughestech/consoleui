@@ -10,6 +10,7 @@ import java.util.HashSet;
 import org.fusesource.jansi.AnsiConsole;
 
 import de.codeshelf.consoleui.elements.ConfirmChoice;
+import de.codeshelf.consoleui.exception.InvalidInputException;
 import de.codeshelf.consoleui.prompt.ConsolePrompt;
 import de.codeshelf.consoleui.prompt.answer.Answer;
 import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
@@ -37,9 +38,8 @@ public class Basic {
 	              .message(anwer -> "Digite o nome")
 	              .validate(answer -> {
 	            	  if(answer == null) {
-	            		  return "Campo obrigatório";
+	            		  throw new InvalidInputException("Campo obrigatório!");
 	            	  }
-	            	  return true;
 	              })
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))

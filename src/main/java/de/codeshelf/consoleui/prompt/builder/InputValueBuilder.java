@@ -2,6 +2,7 @@ package de.codeshelf.consoleui.prompt.builder;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import de.codeshelf.consoleui.elements.InputValue;
@@ -18,7 +19,7 @@ public class InputValueBuilder {
 	private String message;
 	private Character mask;
 	private ArrayList<Completer> completers;
-	private Function<String, Object> validator;
+	private Consumer<String> validator;
 	private Function<Map<String, Answer>, String> fnMessage;
 
 	public InputValueBuilder(PromptBuilder promptBuilder, String name) {
@@ -54,7 +55,7 @@ public class InputValueBuilder {
 		return this;
 	}
 
-	public InputValueBuilder validate(Function<String, Object> validator) {
+	public InputValueBuilder validate(Consumer<String> validator) {
 		this.validator = validator;
 		return this;
 	}
