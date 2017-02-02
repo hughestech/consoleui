@@ -43,10 +43,7 @@ public class Basic {
 		    promptBuilder.createListPrompt()
 	              .name("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
-	              .newItem().text("Margherita").add()  // without name (name defaults to text)
-	              .newItem().text("Veneziana").add()
-	              .newItem().text("Hawai").add()
-	              .newItem().text("Quattro Stagioni").add()
+	              .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
 	              .addPrompt();
 		    // @formatter:on
 

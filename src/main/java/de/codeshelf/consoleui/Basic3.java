@@ -18,7 +18,7 @@ import jline.console.completer.StringsCompleter;
 /**
  * User: Andreas Wegmann Date: 29.11.15
  */
-public class Basic2 {
+public class Basic3 {
 
 	public static void main(String[] args) throws InterruptedException {
 		AnsiConsole.systemInstall();
@@ -35,6 +35,12 @@ public class Basic2 {
 				.name("pizzatype")
 				.message("Escolha a pizza ")
 				.choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
+				/*
+				.newItem().text("Margherita").add()  // without name (name defaults to text)
+				.newItem().text("Veneziana").add()
+				.newItem().text("Hawai").add()
+				.newItem().text("Quattro Stagioni").add()
+				*/
 			.addPrompt();
 			// @formatter:on
 

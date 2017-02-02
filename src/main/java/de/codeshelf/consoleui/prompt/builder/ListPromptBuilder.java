@@ -6,9 +6,12 @@ import de.codeshelf.consoleui.elements.items.impl.ListItem;
 import de.codeshelf.consoleui.prompt.Answer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by andy on 22.01.16.
@@ -48,13 +51,13 @@ public class ListPromptBuilder {
 		return this;
 	}
 
-	public ListItemBuilder newItem() {
-		return new ListItemBuilder(this);
-	}
-
-	public ListItemBuilder newItem(String name) {
-		ListItemBuilder listItemBuilder = new ListItemBuilder(this);
-		return listItemBuilder.name(name).text(name);
+	public ListPromptBuilder choices(String... items) {
+		//// @formatter:off
+		Arrays.asList(items).stream()
+			.filter(StringUtils::isNotBlank)
+			.forEach(item -> itemList.add(new ListItem(item)));
+		// @formatter:on
+		return this;
 	}
 
 	public PromptBuilder addPrompt() {

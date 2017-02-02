@@ -38,6 +38,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'org.fusesource.jansi:jansi:1.11'
     compile 'jline:jline:2.12'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    
 }
 
 javadoc {
@@ -64,7 +66,7 @@ task fatJar(type: Jar, dependsOn: [':compileJava', ':processResources']) {
   manifest {
       attributes 'Implementation-Title': 'ConsoleUI',
                  'Implementation-Version': version,
-                 'Main-Class': 'de.codeshelf.consoleui.Basic2'
+                 'Main-Class': 'de.codeshelf.consoleui.Basic3'
 
     }
 }

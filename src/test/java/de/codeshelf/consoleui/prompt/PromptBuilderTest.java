@@ -38,10 +38,7 @@ public class PromptBuilderTest {
     promptBuilder.createListPrompt()
             .name("pizzatype")
             .message("Which pizza do you want?")
-            .newItem().text("Margherita").add()  // without name (name defaults to text)
-            .newItem("veneziana").text("Veneziana").add()
-            .newItem("hawai").text("Hawai").add()
-            .newItem("quattro").text("Quattro Stagioni").add()
+            .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
             .addPrompt();
 
     promptBuilder.createCheckboxPrompt()
