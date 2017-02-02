@@ -17,7 +17,9 @@ public class ListChoice extends AbstractPromptableElement {
 
 	private List<ListItemIF> listItemList;
 
-	Function<Map<String, Answer>, Set<String>> fnChoices;
+	private Function<Map<String, Answer>, Set<String>> fnChoices;
+
+	private Function<Map<String, Answer>, Boolean> fnWhen;
 
 	public ListChoice(String message, String name, List<ListItemIF> listItemList) {
 		super(message, name);
@@ -39,4 +41,13 @@ public class ListChoice extends AbstractPromptableElement {
 	public ArrayList<ConsoleUIItemIF> getListItemList() {
 		return new ArrayList<ConsoleUIItemIF>(listItemList);
 	}
+
+	public Function<Map<String, Answer>, Boolean> getFnWhen() {
+		return fnWhen;
+	}
+
+	public void setFnWhen(Function<Map<String, Answer>, Boolean> fnWhen) {
+		this.fnWhen = fnWhen;
+	}
+
 }

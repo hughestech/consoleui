@@ -93,19 +93,9 @@ public class ConsolePrompt {
 		for (int i = 0; i < promptableElementList.size(); i++) {
 			PromptableElementIF promptableElement = promptableElementList.get(i);
 			if (promptableElement instanceof ListChoice) {
-				ListAnswer result = doPrompt((ListChoice) promptableElement, answers);
-				answers.put(promptableElement.getName(), result);
+				doListPrompt(answers, promptableElement);
 			} else if (promptableElement instanceof InputValue) {
-				InputValue inputValue = (InputValue) promptableElement;
-				if (inputValue.getFnWhen() != null) {
-					if (inputValue.getFnWhen().apply(answers)) {
-						InputAnswer result = doPrompt(inputValue, answers);
-						answers.put(promptableElement.getName(), result);
-					}
-				} else {
-					InputAnswer result = doPrompt(inputValue, answers);
-					answers.put(promptableElement.getName(), result);
-				}
+				doInputPrompt(answers, promptableElement);
 			} else if (promptableElement instanceof Checkbox) {
 				CheckboxAnswer result = doPrompt((Checkbox) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
@@ -117,6 +107,32 @@ public class ConsolePrompt {
 			}
 		}
 		return answers;
+	}
+
+	private void doInputPrompt(HashMap<String, Answer> answers, PromptableElementIF promptableElement) throws IOException {
+		InputValue inputValue = (InputValue) promptableElement;
+		if (inputValue.getFnWhen() != null) {
+			if (inputValue.getFnWhen().apply(answers)) {
+				InputAnswer result = doPrompt(inputValue, answers);
+				answers.put(promptableElement.getName(), result);
+			}
+		} else {
+			InputAnswer result = doPrompt(inputValue, answers);
+			answers.put(promptableElement.getName(), result);
+		}
+	}
+
+	private void doListPrompt(HashMap<String, Answer> answers, PromptableElementIF promptableElement) throws IOException {
+		ListChoice listChoice = (ListChoice) promptableElement;
+		if (listChoice.getFnWhen() != null) {
+			if (listChoice.getFnWhen().apply(answers)) {
+				ListAnswer result = doPrompt(listChoice, answers);
+				answers.put(promptableElement.getName(), result);
+			}
+		} else {
+			ListAnswer result = doPrompt(listChoice, answers);
+			answers.put(promptableElement.getName(), result);
+		}
 	}
 
 	/**

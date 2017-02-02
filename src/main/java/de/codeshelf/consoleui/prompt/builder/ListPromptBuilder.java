@@ -24,6 +24,7 @@ public class ListPromptBuilder {
 	private List<ListItemIF> itemList = new ArrayList<ListItemIF>();
 	private Function<Map<String, Answer>, String> fnMessage;
 	private Function<Map<String, Answer>, Set<String>> fnChoices;
+	private Function<Map<String, Answer>, Boolean> fnWhen;
 
 	public ListPromptBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
@@ -43,6 +44,11 @@ public class ListPromptBuilder {
 		if (name == null) {
 			name = message;
 		}
+		return this;
+	}
+	
+	public ListPromptBuilder when(Function<Map<String, Answer>, Boolean> when) {
+		this.fnWhen = when;
 		return this;
 	}
 
@@ -67,6 +73,9 @@ public class ListPromptBuilder {
 		}
 		if (fnChoices != null) {
 			listChoice.setFnChoices(fnChoices);
+		}
+		if(fnWhen != null) {
+			listChoice.setFnWhen(fnWhen);
 		}
 		promptBuilder.addPrompt(listChoice);
 		return promptBuilder;

@@ -12,7 +12,7 @@ import jline.console.completer.Completer;
 /**
  * Created by andy on 22.01.16.
  */
-public class InputBuilder {
+public class InputPromptBuilder {
 	private final PromptBuilder promptBuilder;
 	private String name;
 	private String defaultValue;
@@ -24,32 +24,32 @@ public class InputBuilder {
 	private Boolean required;
 	private Function<Map<String, Answer>, Boolean> fnWhen;
 
-	public InputBuilder(PromptBuilder promptBuilder, String name) {
+	public InputPromptBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
 		this.name = name;
 	}
 
-	public InputBuilder defaultValue(String defaultValue) {
+	public InputPromptBuilder defaultValue(String defaultValue) {
 		this.defaultValue = defaultValue;
 		return this;
 	}
 
-	public InputBuilder message(String message) {
+	public InputPromptBuilder message(String message) {
 		this.message = message;
 		return this;
 	}
 
-	public InputBuilder message(Function<Map<String, Answer>, String> message) {
+	public InputPromptBuilder message(Function<Map<String, Answer>, String> message) {
 		this.fnMessage = message;
 		return this;
 	}
 
-	public InputBuilder when(Function<Map<String, Answer>, Boolean> when) {
+	public InputPromptBuilder when(Function<Map<String, Answer>, Boolean> when) {
 		this.fnWhen = when;
 		return this;
 	}
 
-	public InputBuilder addCompleter(Completer completer) {
+	public InputPromptBuilder addCompleter(Completer completer) {
 		if (completers == null) {
 			completers = new ArrayList<Completer>();
 		}
@@ -57,17 +57,17 @@ public class InputBuilder {
 		return this;
 	}
 
-	public InputBuilder mask(char mask) {
+	public InputPromptBuilder mask(char mask) {
 		this.mask = mask;
 		return this;
 	}
 
-	public InputBuilder required() {
+	public InputPromptBuilder required() {
 		this.required = true;
 		return this;
 	}
 
-	public InputBuilder validate(Consumer<String> validator) {
+	public InputPromptBuilder validate(Consumer<String> validator) {
 		this.validator = validator;
 		return this;
 	}
