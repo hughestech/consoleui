@@ -33,7 +33,7 @@ public class Basic {
 			PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
-			promptBuilder.createInputPrompt()
+			promptBuilder.inputPrompt()
 	              .name("name")
 	              .message(anwer -> "Digite o nome")
 	              .validate(answer -> {
@@ -48,7 +48,7 @@ public class Basic {
 			// @formatter:on
 
 			//// @formatter:off
-		    promptBuilder.createListPrompt()
+		    promptBuilder.listPrompt()
 	              .name("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
 	              .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
@@ -56,7 +56,7 @@ public class Basic {
 		    // @formatter:on
 
 			//// @formatter:off
-            promptBuilder.createCheckboxPrompt()
+            promptBuilder.checkboxPrompt()
 	              .name("topping")
 	              .message("Please select additional toppings:")
 	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
@@ -83,7 +83,7 @@ public class Basic {
 		    // @formatter:on
 
 			//// @formatter:off
-		    promptBuilder.createConfirmPromp()
+		    promptBuilder.confirmPrompt()
 		          .name("delivery")
 		          .message("Is this pizza for delivery?")
 		          .defaultValue(ConfirmChoice.ConfirmationValue.YES)

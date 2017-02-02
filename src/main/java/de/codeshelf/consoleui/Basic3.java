@@ -31,7 +31,7 @@ public class Basic3 {
 			PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
-			promptBuilder.createListPrompt()
+			promptBuilder.listPrompt()
 				.name("pizzatype")
 				.message("Escolha a pizza ")
 				.choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
@@ -45,7 +45,7 @@ public class Basic3 {
 			// @formatter:on
 
 			//// @formatter:off
-			promptBuilder.createInputPrompt()
+			promptBuilder.inputPrompt()
 	              .name("name")
 	              .message(anwer -> "Digite o nome: "+anwer.get("pizzatype").value())
 	              //.mask('*')

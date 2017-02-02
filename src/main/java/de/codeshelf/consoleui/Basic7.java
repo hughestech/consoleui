@@ -33,7 +33,7 @@ public class Basic7 {
 			PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
-			promptBuilder.createInputPrompt()
+			promptBuilder.inputPrompt()
 	              .name("name")
 	              .message(anwer -> "Digite o nome")
 	              //.mask('*')
@@ -42,7 +42,7 @@ public class Basic7 {
 			// @formatter:on
 
 			//// @formatter:off
-		    promptBuilder.createListPrompt()
+		    promptBuilder.listPrompt()
 	              .name("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
 	              .choices("Cheese", "Bacon", "Açai")
@@ -50,7 +50,7 @@ public class Basic7 {
 		    // @formatter:on
 
 		    //// @formatter:off
-            promptBuilder.createCheckboxPrompt()
+            promptBuilder.checkboxPrompt()
             
 	              .name("topping")
 	              .message(answers -> "Please select additional toppings: "+answers.get("pizzatype").value())

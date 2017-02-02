@@ -21,11 +21,11 @@ public class PromptBuilder {
 		promptList.add(promptableElement);
 	}
 
-	public InputValueBuilder createInputPrompt() {
+	public InputValueBuilder inputPrompt() {
 		return new InputValueBuilder(this);
 	}
 
-	public ListPromptBuilder createListPrompt() {
+	public ListPromptBuilder listPrompt() {
 		return new ListPromptBuilder(this);
 	}
 	
@@ -34,11 +34,11 @@ public class PromptBuilder {
 		return new ExpandableChoicePromptBuilder(this);
 	}*/
 
-	public CheckboxPromptBuilder createCheckboxPrompt() {
+	public CheckboxPromptBuilder checkboxPrompt() {
 		return new CheckboxPromptBuilder(this);
 	}
 
-	public ConfirmPromptBuilder createConfirmPromp() {
+	public ConfirmPromptBuilder confirmPrompt() {
 		return new ConfirmPromptBuilder(this);
 	}
 }
