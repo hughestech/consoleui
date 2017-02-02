@@ -57,11 +57,6 @@ public class Basic3 {
 
 			HashMap<String, ? extends Answer> result = prompt.prompt(promptBuilder.build());
 			System.out.println("result = " + result);
-
-			ConfirmAnswer delivery = (ConfirmAnswer) result.get("delivery");
-			if (delivery.getConfirmed() == ConfirmChoice.ConfirmationValue.YES) {
-				System.out.println("We will deliver the pizza in 5 minutes");
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
