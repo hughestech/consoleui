@@ -1,17 +1,20 @@
 package de.codeshelf.consoleui.prompt;
 
-import de.codeshelf.consoleui.elements.*;
-import de.codeshelf.consoleui.prompt.answer.Answer;
-import de.codeshelf.consoleui.prompt.answer.CheckboxAnswer;
-import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
-import de.codeshelf.consoleui.prompt.answer.ExpandableChoiceAnswer;
-import de.codeshelf.consoleui.prompt.answer.InputAnswer;
-import de.codeshelf.consoleui.prompt.answer.ListAnswer;
-import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import de.codeshelf.consoleui.elements.Checkbox;
+import de.codeshelf.consoleui.elements.ConfirmChoice;
+import de.codeshelf.consoleui.elements.InputValue;
+import de.codeshelf.consoleui.elements.ListChoice;
+import de.codeshelf.consoleui.elements.PromptableElementIF;
+import de.codeshelf.consoleui.prompt.answer.Answer;
+import de.codeshelf.consoleui.prompt.answer.CheckboxAnswer;
+import de.codeshelf.consoleui.prompt.answer.ConfirmAnswer;
+import de.codeshelf.consoleui.prompt.answer.InputAnswer;
+import de.codeshelf.consoleui.prompt.answer.ListAnswer;
+import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 
 /**
  * ConsolePrompt encapsulates the prompting of a list of input questions for the
@@ -22,9 +25,6 @@ import java.util.List;
 public class ConsolePrompt {
 	// input prompt implementation
 	private InputPrompt inputPrompt;
-
-	// expandable choice prompt implementation
-	private ExpandableChoicePrompt expandableChoicePrompt;
 
 	// checkbox prompt implementation
 	private CheckboxPrompt checkboxPrompt;
@@ -41,14 +41,6 @@ public class ConsolePrompt {
 			inputPrompt = new InputPrompt();
 		}
 		return inputPrompt;
-	}
-
-	/* Lazy getter for expandable choice prompt */
-	private ExpandableChoicePrompt getExpandableChoicePrompt() throws IOException {
-		if (expandableChoicePrompt == null) {
-			expandableChoicePrompt = new ExpandableChoicePrompt();
-		}
-		return expandableChoicePrompt;
 	}
 
 	/* Lazy getter for checkbox prompt */
@@ -86,8 +78,7 @@ public class ConsolePrompt {
 	 * promptable elements, typically created with {@link PromptBuilder}. Each
 	 * of the elements is processed and the user entries and answers are filled
 	 * in to the result map. The result map contains the key of each promtable
-	 * element and the user entry as an object implementing
-	 * {@link Answer}.
+	 * element and the user entry as an object implementing {@link Answer}.
 	 *
 	 * @param promptableElementList
 	 *            the list of questions / promts to ask the user for.
@@ -106,9 +97,6 @@ public class ConsolePrompt {
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof InputValue) {
 				InputAnswer result = doPrompt((InputValue) promptableElement, answers);
-				answers.put(promptableElement.getName(), result);
-			} else if (promptableElement instanceof ExpandableChoice) {
-				ExpandableChoiceAnswer result = doPrompt((ExpandableChoice) promptableElement, answers);
 				answers.put(promptableElement.getName(), result);
 			} else if (promptableElement instanceof Checkbox) {
 				CheckboxAnswer result = doPrompt((Checkbox) promptableElement, answers);
@@ -173,21 +161,6 @@ public class ConsolePrompt {
 	 */
 	private CheckboxAnswer doPrompt(Checkbox checkbox, HashMap<String, Answer> answers) throws IOException {
 		return getCheckboxPrompt().prompt(checkbox, answers);
-	}
-
-	/**
-	 * Process a {@link ExpandableChoice}.
-	 *
-	 * @param expandableChoice
-	 *            the expandable choice displayed where the user can select a
-	 *            value from.
-	 * @return Object of type {@link ExpandableChoiceAnswer} holding the uses
-	 *         choice.
-	 * @throws IOException
-	 *             may be thrown by console reader
-	 */
-	private ExpandableChoiceAnswer doPrompt(ExpandableChoice expandableChoice, HashMap<String, Answer> answers) throws IOException {
-		return getExpandableChoicePrompt().prompt(expandableChoice, answers);
 	}
 
 	/**
