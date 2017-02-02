@@ -18,6 +18,8 @@ public class ConfirmChoice extends AbstractPromptableElement {
 
 	private Function<Map<String, Answer>, String> fnMessage;
 
+	private Function<Map<String, Answer>, Boolean> fnWhen;
+
 	public ConfirmChoice(String message, String name) {
 		super(message, name);
 	}
@@ -37,6 +39,14 @@ public class ConfirmChoice extends AbstractPromptableElement {
 
 	public void setFnMessage(Function<Map<String, Answer>, String> fnMessage) {
 		this.fnMessage = fnMessage;
+	}
+
+	public Function<Map<String, Answer>, Boolean> getFnWhen() {
+		return fnWhen;
+	}
+
+	public void setFnWhen(Function<Map<String, Answer>, Boolean> fnWhen) {
+		this.fnWhen = fnWhen;
 	}
 
 }

@@ -99,8 +99,7 @@ public class ConsolePrompt {
 			} else if (promptableElement instanceof Checkbox) {
 				doCheckboxPrompt(answers, promptableElement);
 			} else if (promptableElement instanceof ConfirmChoice) {
-				ConfirmAnswer result = doPrompt((ConfirmChoice) promptableElement, answers);
-				answers.put(promptableElement.getName(), result);
+				doConfirmChoicePrompt(answers, promptableElement);
 			} else {
 				throw new IllegalArgumentException("wrong type of promptable element");
 			}
@@ -143,6 +142,19 @@ public class ConsolePrompt {
 			}
 		} else {
 			CheckboxAnswer result = doPrompt(checkbox, answers);
+			answers.put(promptableElement.getName(), result);
+		}
+	}
+
+	private void doConfirmChoicePrompt(HashMap<String, Answer> answers, PromptableElementIF promptableElement) throws IOException {
+		ConfirmChoice confirmChoice = (ConfirmChoice) promptableElement;
+		if (confirmChoice.getFnWhen() != null) {
+			if (confirmChoice.getFnWhen().apply(answers)) {
+				ConfirmAnswer result = doPrompt(confirmChoice, answers);
+				answers.put(promptableElement.getName(), result);
+			}
+		} else {
+			ConfirmAnswer result = doPrompt(confirmChoice, answers);
 			answers.put(promptableElement.getName(), result);
 		}
 	}
