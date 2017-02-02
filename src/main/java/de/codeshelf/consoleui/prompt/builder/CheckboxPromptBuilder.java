@@ -25,22 +25,16 @@ public class CheckboxPromptBuilder {
 	private Function<Map<String, Answer>, String> fnMessage;
 	private Function<Map<String, Answer>, Set<String>> fnChoices;
 
-	public CheckboxPromptBuilder(PromptBuilder promptBuilder) {
+	public CheckboxPromptBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
 		itemList = new ArrayList<CheckboxItemIF>();
+		this.name = name;
 	}
 
 	void addItem(CheckboxItemIF checkboxItem) {
 		itemList.add(checkboxItem);
 	}
 
-	public CheckboxPromptBuilder name(String name) {
-		this.name = name;
-		if (message == null) {
-			message = name;
-		}
-		return this;
-	}
 
 	public CheckboxPromptBuilder message(String message) {
 		this.message = message;

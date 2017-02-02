@@ -54,8 +54,7 @@ public class Basic {
 		    // @formatter:on
 
 			//// @formatter:off
-            promptBuilder.checkboxPrompt()
-	              .name("topping")
+            promptBuilder.checkboxPrompt("topping")
 	              .message("Please select additional toppings:")
 	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              //.newSeparator("standard toppings").add()

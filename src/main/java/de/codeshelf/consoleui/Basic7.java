@@ -46,9 +46,7 @@ public class Basic7 {
 		    // @formatter:on
 
 			//// @formatter:off
-            promptBuilder.checkboxPrompt()
-            
-	              .name("topping")
+            promptBuilder.checkboxPrompt("topping")
 	              .message(answers -> "Please select additional toppings: "+answers.get("pizzatype").value())
 	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              .build();

@@ -46,8 +46,7 @@ public class Basic4 {
 		    // @formatter:on
 
 		    //// @formatter:off
-            promptBuilder.checkboxPrompt()
-	              .name("topping")
+            promptBuilder.checkboxPrompt("topping")
 	              .message("Please select additional toppings:")
 	              .choices("Cheese", "Bacon", "Açai")
 	              .build();

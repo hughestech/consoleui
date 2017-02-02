@@ -34,8 +34,8 @@ public class PromptBuilder {
 		return new ExpandableChoicePromptBuilder(this);
 	}*/
 
-	public CheckboxPromptBuilder checkboxPrompt() {
-		return new CheckboxPromptBuilder(this);
+	public CheckboxPromptBuilder checkboxPrompt(String name) {
+		return new CheckboxPromptBuilder(this, name);
 	}
 
 	public ConfirmPromptBuilder confirmPrompt() {
