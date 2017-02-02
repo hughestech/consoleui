@@ -44,9 +44,9 @@ public class Basic {
 	              .name("pizzatype")
 	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
 	              .newItem().text("Margherita").add()  // without name (name defaults to text)
-	              .newItem("veneziana").text("Veneziana").add()
-	              .newItem("hawai").text("Hawai").add()
-	              .newItem("quattro").text("Quattro Stagioni").add()
+	              .newItem().text("Veneziana").add()
+	              .newItem().text("Hawai").add()
+	              .newItem().text("Quattro Stagioni").add()
 	              .addPrompt();
 		    // @formatter:on
 
