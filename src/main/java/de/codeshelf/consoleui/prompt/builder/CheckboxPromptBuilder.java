@@ -58,15 +58,6 @@ public class CheckboxPromptBuilder {
 		return this;
 	}
 
-	public CheckboxItemBuilder newItem() {
-		return new CheckboxItemBuilder(this);
-	}
-
-	public CheckboxItemBuilder newItem(String name) {
-		CheckboxItemBuilder checkboxItemBuilder = new CheckboxItemBuilder(this);
-		return checkboxItemBuilder.name(name);
-	}
-
 	public CheckboxPromptBuilder choices(String... choices) {
 	//// @formatter:off
 			Arrays.asList(choices).stream()
@@ -75,7 +66,7 @@ public class CheckboxPromptBuilder {
 			// @formatter:on
 		return this;
 	}
-	
+
 	public CheckboxPromptBuilder choices(Function<Map<String, Answer>, Set<String>> fnChoices) {
 		this.fnChoices = fnChoices;
 		return this;
@@ -92,10 +83,10 @@ public class CheckboxPromptBuilder {
 
 	public PromptBuilder build() {
 		Checkbox checkbox = new Checkbox(message, name, itemList);
-		if(fnMessage != null) {
+		if (fnMessage != null) {
 			checkbox.setFnMessage(fnMessage);
 		}
-		if(fnChoices != null) {
+		if (fnChoices != null) {
 			checkbox.setFnChoices(fnChoices);
 		}
 		promptBuilder.addPrompt(checkbox);
