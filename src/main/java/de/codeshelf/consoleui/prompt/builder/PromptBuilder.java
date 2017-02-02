@@ -21,8 +21,8 @@ public class PromptBuilder {
 		promptList.add(promptableElement);
 	}
 
-	public InputValueBuilder inputPrompt(String name) {
-		return new InputValueBuilder(this, name);
+	public InputBuilder inputPrompt(String name) {
+		return new InputBuilder(this, name);
 	}
 
 	public ListPromptBuilder listPrompt(String name) {

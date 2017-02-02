@@ -12,7 +12,7 @@ import jline.console.completer.Completer;
 /**
  * Created by andy on 22.01.16.
  */
-public class InputValueBuilder {
+public class InputBuilder {
 	private final PromptBuilder promptBuilder;
 	private String name;
 	private String defaultValue;
@@ -23,27 +23,27 @@ public class InputValueBuilder {
 	private Function<Map<String, Answer>, String> fnMessage;
 	private Boolean required;
 
-	public InputValueBuilder(PromptBuilder promptBuilder, String name) {
+	public InputBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
 		this.name = name;
 	}
 
-	public InputValueBuilder defaultValue(String defaultValue) {
+	public InputBuilder defaultValue(String defaultValue) {
 		this.defaultValue = defaultValue;
 		return this;
 	}
 
-	public InputValueBuilder message(String message) {
+	public InputBuilder message(String message) {
 		this.message = message;
 		return this;
 	}
 
-	public InputValueBuilder message(Function<Map<String, Answer>, String> message) {
+	public InputBuilder message(Function<Map<String, Answer>, String> message) {
 		this.fnMessage = message;
 		return this;
 	}
 
-	public InputValueBuilder addCompleter(Completer completer) {
+	public InputBuilder addCompleter(Completer completer) {
 		if (completers == null) {
 			completers = new ArrayList<Completer>();
 		}
@@ -51,17 +51,17 @@ public class InputValueBuilder {
 		return this;
 	}
 
-	public InputValueBuilder mask(char mask) {
+	public InputBuilder mask(char mask) {
 		this.mask = mask;
 		return this;
 	}
 
-	public InputValueBuilder required() {
+	public InputBuilder required() {
 		this.required = true;
 		return this;
 	}
 
-	public InputValueBuilder validate(Consumer<String> validator) {
+	public InputBuilder validate(Consumer<String> validator) {
 		this.validator = validator;
 		return this;
 	}
