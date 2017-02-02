@@ -38,7 +38,7 @@ public class PromptBuilder {
 		return new CheckboxPromptBuilder(this, name);
 	}
 
-	public ConfirmPromptBuilder confirmPrompt() {
-		return new ConfirmPromptBuilder(this);
+	public ConfirmPromptBuilder confirmPrompt(String name) {
+		return new ConfirmPromptBuilder(this, name);
 	}
 }

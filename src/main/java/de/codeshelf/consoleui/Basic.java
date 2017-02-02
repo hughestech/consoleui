@@ -80,8 +80,7 @@ public class Basic {
 		    // @formatter:on
 
 			//// @formatter:off
-		    promptBuilder.confirmPrompt()
-		          .name("delivery")
+		    promptBuilder.confirmPrompt("delivery")
 		          .message("Is this pizza for delivery?")
 		          .defaultValue(ConfirmChoice.ConfirmationValue.YES)
 		          .build();
