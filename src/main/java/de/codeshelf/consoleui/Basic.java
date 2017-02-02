@@ -3,7 +3,9 @@ package de.codeshelf.consoleui;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.fusesource.jansi.AnsiConsole;
 
@@ -51,7 +53,7 @@ public class Basic {
             promptBuilder.createCheckboxPrompt()
 	              .name("topping")
 	              .message("Please select additional toppings:")
-	
+	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              //.newSeparator("standard toppings").add()
 	
 	              //.newSeparator("and our speciality...").add()
@@ -60,6 +62,7 @@ public class Basic {
 	         // @formatter:on
 
             //// @formatter:off
+            /*
 		    promptBuilder.createChoicePrompt()
 		              .name("payment")
 		              .message("How do you want to pay?")
@@ -70,6 +73,7 @@ public class Basic {
 		              .newSeparator("online payment").add()
 		              .newItem("paypal").message("Paypal").key('p').add()
 		              .build();
+		             */
 		    // @formatter:on
 
 			//// @formatter:off

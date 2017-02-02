@@ -28,10 +28,11 @@ public class PromptBuilder {
 	public ListPromptBuilder createListPrompt() {
 		return new ListPromptBuilder(this);
 	}
-
+	
+	/*
 	public ExpandableChoicePromptBuilder createChoicePrompt() {
 		return new ExpandableChoicePromptBuilder(this);
-	}
+	}*/
 
 	public CheckboxPromptBuilder createCheckboxPrompt() {
 		return new CheckboxPromptBuilder(this);
