@@ -8,38 +8,36 @@ import java.util.List;
 /**
  * PromptBuilder is the builder class which creates
  *
- * Created by Andreas Wegmann
- * on 20.01.16.
+ * Created by Andreas Wegmann on 20.01.16.
  */
 public class PromptBuilder {
-  List<PromptableElementIF> promptList = new ArrayList<PromptableElementIF>();
+	List<PromptableElementIF> promptList = new ArrayList<PromptableElementIF>();
 
-  public List<PromptableElementIF> build() {
-    return promptList;
-  }
+	public List<PromptableElementIF> build() {
+		return promptList;
+	}
 
-  public void addPrompt(PromptableElementIF promptableElement) {
-    promptList.add(promptableElement);
-  }
+	public void addPrompt(PromptableElementIF promptableElement) {
+		promptList.add(promptableElement);
+	}
 
-  public InputValueBuilder createInputPrompt() {
-    return new InputValueBuilder(this);
-  }
+	public InputValueBuilder createInputPrompt() {
+		return new InputValueBuilder(this);
+	}
 
-  public ListPromptBuilder createListPrompt() {
-    return new ListPromptBuilder(this);
-  }
+	public ListPromptBuilder createListPrompt() {
+		return new ListPromptBuilder(this);
+	}
 
-  public ExpandableChoicePromptBuilder createChoicePrompt() {
-    return new ExpandableChoicePromptBuilder(this);
-  }
+	public ExpandableChoicePromptBuilder createChoicePrompt() {
+		return new ExpandableChoicePromptBuilder(this);
+	}
 
-  public CheckboxPromptBuilder createCheckboxPrompt() {
-    return new CheckboxPromptBuilder(this);
-  }
+	public CheckboxPromptBuilder createCheckboxPrompt() {
+		return new CheckboxPromptBuilder(this);
+	}
 
-
-  public ConfirmPromptBuilder createConfirmPromp() {
-    return new ConfirmPromptBuilder(this);
-  }
+	public ConfirmPromptBuilder createConfirmPromp() {
+		return new ConfirmPromptBuilder(this);
+	}
 }
