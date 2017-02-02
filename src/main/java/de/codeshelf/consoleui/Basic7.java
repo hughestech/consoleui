@@ -54,7 +54,7 @@ public class Basic7 {
             
 	              .name("topping")
 	              .message(answers -> "Please select additional toppings: "+answers.get("pizzatype").value())
-	              .choices(anwers -> new HashSet<>(Arrays.asList("A", "B", "C")))
+	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
 	              .build();
 	         // @formatter:on
 
