@@ -50,7 +50,7 @@ public class Basic {
 
       promptBuilder.createListPrompt()
               .name("pizzatype")
-              .message(anwers -> "Escolha a pizza "+((InputAnswer)anwers.get("name")).getInput())
+              .message(anwers -> "Escolha a pizza "+anwers.get("name").getValue())
               .newItem().text("Margherita").add()  // without name (name defaults to text)
               .newItem("veneziana").text("Veneziana").add()
               .newItem("hawai").text("Hawai").add()

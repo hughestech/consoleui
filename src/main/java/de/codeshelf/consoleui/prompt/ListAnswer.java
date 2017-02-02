@@ -1,5 +1,7 @@
 package de.codeshelf.consoleui.prompt;
 
+import java.util.HashSet;
+
 /**
  * Result of a list choice. Holds the id of the selected item.
  * <p>
@@ -7,30 +9,40 @@ package de.codeshelf.consoleui.prompt;
  */
 public class ListAnswer implements Answer {
 
-  String selectedId;
+	String selectedId;
 
-  /**
-   * Returns the ID of the selected item.
-   *
-   * @return id of selected item
-   */
-  public String getSelectedId() {
-    return selectedId;
-  }
+	/**
+	 * Returns the ID of the selected item.
+	 *
+	 * @return id of selected item
+	 */
+	public String getSelectedId() {
+		return selectedId;
+	}
 
-  /**
-   * Default constructor.
-   *
-   * @param selectedId id of selected item.
-   */
-  public ListAnswer(String selectedId) {
-    this.selectedId = selectedId;
-  }
+	/**
+	 * Default constructor.
+	 *
+	 * @param selectedId
+	 *            id of selected item.
+	 */
+	public ListAnswer(String selectedId) {
+		this.selectedId = selectedId;
+	}
 
-  @Override
-  public String toString() {
-    return "ListResult{" +
-            "selectedId='" + selectedId + '\'' +
-            '}';
-  }
+	@Override
+	public String getValue() {
+		return this.selectedId;
+	}
+
+	@Override
+	public HashSet<String> getList() {
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "ListResult{" + "selectedId='" + selectedId + '\'' + '}';
+	}
+
 }
