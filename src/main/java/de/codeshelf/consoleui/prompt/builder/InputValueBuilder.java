@@ -21,6 +21,7 @@ public class InputValueBuilder {
 	private ArrayList<Completer> completers;
 	private Consumer<String> validator;
 	private Function<Map<String, Answer>, String> fnMessage;
+	private boolean required;
 
 	public InputValueBuilder(PromptBuilder promptBuilder, String name) {
 		this.promptBuilder = promptBuilder;
@@ -52,6 +53,11 @@ public class InputValueBuilder {
 
 	public InputValueBuilder mask(char mask) {
 		this.mask = mask;
+		return this;
+	}
+
+	public InputValueBuilder required() {
+		this.required = true;
 		return this;
 	}
 
