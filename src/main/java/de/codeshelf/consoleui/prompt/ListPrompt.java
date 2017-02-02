@@ -20,6 +20,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListChoice, ListAnswer> {
 	// the list to let the user choose from
 	private ListChoice listChoice;
+	private String message;
 
 	CUIRenderer itemRenderer = CUIRenderer.getRenderer();
 
@@ -27,25 +28,10 @@ public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListC
 		super();
 	}
 
-	private void render() {
-		int itemNumber = 0;
-
-		if (renderHeight == 0) {
-			renderHeight = 2 + itemList.size();
-		} else {
-			System.out.println(ansi().cursorUp(renderHeight));
-		}
-
-		System.out.println(renderMessagePrompt(listChoice.getMessage()));
-		for (ConsoleUIItemIF listItem : itemList) {
-			String renderedItem = itemRenderer.render(listItem, (selectedItemIndex == itemNumber));
-			System.out.println(renderedItem);
-			itemNumber++;
-		}
-	}
-
 	public ListAnswer prompt(ListChoice listChoice, HashMap<String, Answer> answers) throws IOException {
 		this.listChoice = listChoice;
+		this.message = this.listChoice.getFnMessage() != null ? this.listChoice.getFnMessage().apply(answers)
+				: this.listChoice.getMessage();
 		itemList = listChoice.getListItemList();
 		if (reader == null) {
 			reader = new ConsoleReaderImpl();
@@ -80,7 +66,24 @@ public class ListPrompt extends AbstractListablePrompt implements PromptIF<ListC
 
 		ListItem listItem = (ListItem) itemList.get(selectedItemIndex);
 		ListAnswer selection = new ListAnswer(listItem.getName());
-		renderMessagePromptAndResult(listChoice.getMessage(), ((ListItem) itemList.get(selectedItemIndex)).getText());
+		renderMessagePromptAndResult(this.message, ((ListItem) itemList.get(selectedItemIndex)).getText());
 		return selection;
+	}
+
+	private void render() {
+		int itemNumber = 0;
+
+		if (renderHeight == 0) {
+			renderHeight = 2 + itemList.size();
+		} else {
+			System.out.println(ansi().cursorUp(renderHeight));
+		}
+
+		System.out.println(renderMessagePrompt(this.message));
+		for (ConsoleUIItemIF listItem : itemList) {
+			String renderedItem = itemRenderer.render(listItem, (selectedItemIndex == itemNumber));
+			System.out.println(renderedItem);
+			itemNumber++;
+		}
 	}
 }

@@ -1,8 +1,10 @@
 package de.codeshelf.consoleui;
 
 import de.codeshelf.consoleui.elements.ConfirmChoice;
+import de.codeshelf.consoleui.elements.InputValue;
 import de.codeshelf.consoleui.prompt.ConfirmAnswer;
 import de.codeshelf.consoleui.prompt.ConsolePrompt;
+import de.codeshelf.consoleui.prompt.InputAnswer;
 import de.codeshelf.consoleui.prompt.Answer;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 import jline.TerminalFactory;
@@ -48,7 +50,7 @@ public class Basic {
 
       promptBuilder.createListPrompt()
               .name("pizzatype")
-              .message("Which pizza do you want?")
+              .message(anwers -> "Escolha a pizza "+((InputAnswer)anwers.get("name")).getInput())
               .newItem().text("Margherita").add()  // without name (name defaults to text)
               .newItem("veneziana").text("Veneziana").add()
               .newItem("hawai").text("Hawai").add()
