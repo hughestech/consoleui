@@ -2,6 +2,8 @@ package de.codeshelf.consoleui.prompt;
 
 import java.util.HashSet;
 
+import de.codeshelf.consoleui.elements.ConfirmChoice.ConfirmationValue;
+
 /**
  * Result of a checkbox choice. CheckboxResult contains a {@link java.util.Set}
  * with the IDs of the selected checkbox items.
@@ -38,6 +40,11 @@ public class CheckboxAnswer implements Answer {
 	@Override
 	public HashSet<String> list() {
 		return this.selectedIds;
+	}
+
+	@Override
+	public ConfirmationValue confirmation() {
+		return null;
 	}
 
 	@Override

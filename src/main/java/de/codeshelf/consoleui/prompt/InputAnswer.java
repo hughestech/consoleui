@@ -2,6 +2,8 @@ package de.codeshelf.consoleui.prompt;
 
 import java.util.HashSet;
 
+import de.codeshelf.consoleui.elements.ConfirmChoice.ConfirmationValue;
+
 /**
  *
  * User: Andreas Wegmann Date: 03.02.16
@@ -24,6 +26,11 @@ public class InputAnswer implements Answer {
 
 	@Override
 	public HashSet<String> list() {
+		return null;
+	}
+
+	@Override
+	public ConfirmationValue confirmation() {
 		return null;
 	}
 

@@ -2,6 +2,8 @@ package de.codeshelf.consoleui.prompt;
 
 import java.util.HashSet;
 
+import de.codeshelf.consoleui.elements.ConfirmChoice.ConfirmationValue;
+
 /**
  * Result of a an expandable choice. ExpandableChoiceResult contains a String
  * with the IDs of the selected item.
@@ -39,6 +41,11 @@ public class ExpandableChoiceAnswer implements Answer {
 
 	@Override
 	public HashSet<String> list() {
+		return null;
+	}
+
+	@Override
+	public ConfirmationValue confirmation() {
 		return null;
 	}
 

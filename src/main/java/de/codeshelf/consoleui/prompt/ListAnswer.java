@@ -2,6 +2,8 @@ package de.codeshelf.consoleui.prompt;
 
 import java.util.HashSet;
 
+import de.codeshelf.consoleui.elements.ConfirmChoice.ConfirmationValue;
+
 /**
  * Result of a list choice. Holds the id of the selected item.
  * <p>
@@ -37,6 +39,11 @@ public class ListAnswer implements Answer {
 
 	@Override
 	public HashSet<String> list() {
+		return null;
+	}
+
+	@Override
+	public ConfirmationValue confirmation() {
 		return null;
 	}
 

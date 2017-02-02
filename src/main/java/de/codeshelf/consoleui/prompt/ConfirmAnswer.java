@@ -3,6 +3,7 @@ package de.codeshelf.consoleui.prompt;
 import java.util.HashSet;
 
 import de.codeshelf.consoleui.elements.ConfirmChoice;
+import de.codeshelf.consoleui.elements.ConfirmChoice.ConfirmationValue;
 
 /**
  * Result of a confirmation choice. Holds a single value of 'yes' or 'no' from
@@ -40,6 +41,11 @@ public class ConfirmAnswer implements Answer {
 	@Override
 	public HashSet<String> list() {
 		return null;
+	}
+
+	@Override
+	public ConfirmationValue confirmation() {
+		return confirmed;
 	}
 
 	@Override
