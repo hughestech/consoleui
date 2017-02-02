@@ -52,21 +52,6 @@ public class Basic4 {
 	              .name("topping")
 	              .message("Please select additional toppings:")
 	              .choices("Cheese", "Bacon", "Açai")
-	              //.newSeparator("standard toppings").add()
-	              /*
-	              .newItem().name("cheese").text("Cheese").add()
-	              .newItem("bacon").text("Bacon").add()
-	              .newItem("onions").text("Onions").disabledText("Sorry. Out of stock.").add()
-	
-	              // .newSeparator().text("special toppings").add()
-	
-	              .newItem("salami").text("Very hot salami").check().add()
-	              .newItem("salmon").text("Smoked Salmon").add()
-	
-	              //.newSeparator("and our speciality...").add()
-	
-	              .newItem("special").text("Anchovies, and olives").checked(true).add()
-	              */
 	              .build();
 	         // @formatter:on
 
