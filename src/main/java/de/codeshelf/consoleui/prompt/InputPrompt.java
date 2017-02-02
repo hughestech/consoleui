@@ -5,20 +5,16 @@ import static org.fusesource.jansi.Ansi.ansi;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.plaf.InputMapUIResource;
+import java.util.function.Function;
 
 import org.fusesource.jansi.Ansi.Color;
-import org.fusesource.jansi.Ansi.Erase;
 
 import de.codeshelf.consoleui.elements.InputValue;
 import de.codeshelf.consoleui.prompt.answer.Answer;
 import de.codeshelf.consoleui.prompt.answer.InputAnswer;
 import de.codeshelf.consoleui.prompt.reader.ConsoleReaderImpl;
 import de.codeshelf.consoleui.prompt.reader.ReaderIF;
-import de.codeshelf.consoleui.prompt.reader.ReaderIF.SpecialKey;
 import de.codeshelf.consoleui.prompt.renderer.CUIRenderer;
-import de.codeshelf.consoleui.util.Validator;
 import jline.console.completer.Completer;
 
 /**
@@ -107,10 +103,10 @@ public class InputPrompt extends AbstractPrompt implements PromptIF<InputValue, 
 	}
 
 	private void validateInput(InputValue inputElement, String lineInput, ReaderIF.ReaderInput readerInput) throws IOException {
-		Validator validator = inputElement.getValidator();
+		Function<String, Object>  validator = inputElement.getValidator();
 		if (validator != null) {
 			invalidInput = false;
-			Object validationResult = validator.test(lineInput);
+			Object validationResult = validator.apply(lineInput);
 			if (validationResult instanceof Boolean) {
 				boolean booleanValidationResult = Boolean.valueOf(validationResult.toString());
 				if (!booleanValidationResult) {

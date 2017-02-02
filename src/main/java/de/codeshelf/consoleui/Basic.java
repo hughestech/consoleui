@@ -36,6 +36,12 @@ public class Basic {
 			promptBuilder.createInputPrompt()
 	              .name("name")
 	              .message(anwer -> "Digite o nome")
+	              .validate(answer -> {
+	            	  if(answer == null) {
+	            		  return "Campo obrigatório";
+	            	  }
+	            	  return true;
+	              })
 	              //.mask('*')
 	              .addCompleter(new StringsCompleter("Jim", "Jack", "John"))
 	              .build();
@@ -49,7 +55,7 @@ public class Basic {
 	              .build();
 		    // @formatter:on
 
-		    //// @formatter:off
+			//// @formatter:off
             promptBuilder.createCheckboxPrompt()
 	              .name("topping")
 	              .message("Please select additional toppings:")
@@ -61,7 +67,7 @@ public class Basic {
 	              .build();
 	         // @formatter:on
 
-            //// @formatter:off
+			//// @formatter:off
             /*
 		    promptBuilder.createChoicePrompt()
 		              .name("payment")

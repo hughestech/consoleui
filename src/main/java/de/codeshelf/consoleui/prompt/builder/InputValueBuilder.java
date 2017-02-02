@@ -6,7 +6,6 @@ import java.util.function.Function;
 
 import de.codeshelf.consoleui.elements.InputValue;
 import de.codeshelf.consoleui.prompt.answer.Answer;
-import de.codeshelf.consoleui.util.Validator;
 import jline.console.completer.Completer;
 
 /**
@@ -19,7 +18,7 @@ public class InputValueBuilder {
 	private String message;
 	private Character mask;
 	private ArrayList<Completer> completers;
-	private Validator validator;
+	private Function<String, Object> validator;
 	private Function<Map<String, Answer>, String> fnMessage;
 
 	public InputValueBuilder(PromptBuilder promptBuilder) {
@@ -59,7 +58,7 @@ public class InputValueBuilder {
 		return this;
 	}
 
-	public InputValueBuilder validate(Validator validator) {
+	public InputValueBuilder validate(Function<String, Object> validator) {
 		this.validator = validator;
 		return this;
 	}
