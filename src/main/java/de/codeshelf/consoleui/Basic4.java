@@ -18,7 +18,7 @@ import jline.console.completer.StringsCompleter;
 /**
  * User: Andreas Wegmann Date: 29.11.15
  */
-public class Basic {
+public class Basic4 {
 
 	public static void main(String[] args) throws InterruptedException {
 		AnsiConsole.systemInstall();
@@ -51,9 +51,9 @@ public class Basic {
             promptBuilder.createCheckboxPrompt()
 	              .name("topping")
 	              .message("Please select additional toppings:")
-	
+	              .choices("Cheese", "Bacon", "Açai")
 	              //.newSeparator("standard toppings").add()
-	
+	              /*
 	              .newItem().name("cheese").text("Cheese").add()
 	              .newItem("bacon").text("Bacon").add()
 	              .newItem("onions").text("Onions").disabledText("Sorry. Out of stock.").add()
@@ -66,37 +66,14 @@ public class Basic {
 	              //.newSeparator("and our speciality...").add()
 	
 	              .newItem("special").text("Anchovies, and olives").checked(true).add()
+	              */
 	              .build();
 	         // @formatter:on
 
-            //// @formatter:off
-		    promptBuilder.createChoicePrompt()
-		              .name("payment")
-		              .message("How do you want to pay?")
-		
-		              .newItem().name("cash").message("Cash").key('c').asDefault().add()
-		              .newItem("visa").message("Visa Card").key('v').add()
-		              .newItem("master").message("Master Card").key('m').add()
-		              .newSeparator("online payment").add()
-		              .newItem("paypal").message("Paypal").key('p').add()
-		              .build();
-		    // @formatter:on
-
-			//// @formatter:off
-		    promptBuilder.createConfirmPromp()
-		          .name("delivery")
-		          .message("Is this pizza for delivery?")
-		          .defaultValue(ConfirmChoice.ConfirmationValue.YES)
-		          .build();
-		    // @formatter:on
 
 			HashMap<String, ? extends Answer> result = prompt.prompt(promptBuilder.build());
 			System.out.println("result = " + result);
 
-			ConfirmAnswer delivery = (ConfirmAnswer) result.get("delivery");
-			if (delivery.getConfirmed() == ConfirmChoice.ConfirmationValue.YES) {
-				System.out.println("We will deliver the pizza in 5 minutes");
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
