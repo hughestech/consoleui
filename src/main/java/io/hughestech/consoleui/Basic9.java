@@ -35,13 +35,14 @@ public class Basic9 {
 
 			//// @formatter:off
 			promptBuilder.listPrompt("pizzatype")
-				.message(anwers -> "Escolha a pizza ")
+				.message(anwers -> "Select your pizza ")
 				.choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
+				
 			.build();
 			
 			//// @formatter:off
 			promptBuilder.inputPrompt("name")
-	              .message(anwer -> "Digite o nome")
+	              .message(anwer -> "What is your name")
 	              .required()
 	              //.mask('*')
 	              .choices("Jim", "Jack", "John")
@@ -54,7 +55,7 @@ public class Basic9 {
 			//// @formatter:off
             promptBuilder.checkboxPrompt("topping")
 	              .message("Please select additional toppings:")
-	              .choices(answers -> new HashSet<>(Arrays.asList("A", "B", "C")))
+	              .choices(answers -> new HashSet<>(Arrays.asList("Avocado", "Bacon", "Corn")))
 	              //.newSeparator("standard toppings").add()
 	
 	              //.newSeparator("and our speciality...").add()

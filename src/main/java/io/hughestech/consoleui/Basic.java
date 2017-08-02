@@ -92,6 +92,8 @@ public class Basic {
 			ConfirmAnswer delivery = (ConfirmAnswer) result.get("delivery");
 			if (delivery.getConfirmed() == ConfirmChoice.ConfirmationValue.YES) {
 				System.out.println("We will deliver the pizza in 5 minutes");
+			}else {
+				System.out.println("You will need to pick up your pizza");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
