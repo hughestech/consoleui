@@ -3,6 +3,9 @@ package io.hughestech.consoleui.prompt.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+
 import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.*;
 
@@ -12,6 +15,7 @@ import io.hughestech.consoleui.elements.*;
  * Created by Andreas Wegmann on 20.01.16.
  */
 @ReadEventAnnotation
+@ApplicationScoped
 public class PromptBuilder {
 	List<PromptableElementIF> promptList = new ArrayList<PromptableElementIF>();
 

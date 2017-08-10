@@ -15,6 +15,10 @@ public class WeldObserver{
 	@Inject @Any
 	 Instance<Basic> basicInstance;
 	
+	@Inject Example02 example;
+	
+	@Inject PromptBuilderProducer pbp;
+	
 	public static void main(String... args) {
 		
 		
@@ -34,18 +38,8 @@ public class WeldObserver{
 	
 	public void containerInitialized(@Observes ContainerInitialized event, @Parameters List<String> parameters) {
 
+		this.pbp.getPromptBuilder();
 		
-		
-	       if (parameters.size() > 1) {
-			System.out.println("Hello " + parameters.get(0));
-		}else {
-			System.out.println("Hello");
-			try {
-				basicInstance.get().run(null);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		this.example.runCmdPrompt();
 	}
 }
