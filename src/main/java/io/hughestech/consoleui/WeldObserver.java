@@ -2,14 +2,23 @@ package io.hughestech.consoleui;
 
 import java.util.List;
 import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 
-
+import org.fusesource.jansi.AnsiConsole;
 import org.jboss.weld.environment.se.bindings.Parameters;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 
 public class WeldObserver{
 	
+	@Inject @Any
+	 Instance<Basic> basicInstance;
+	
 	public static void main(String... args) {
+		
+		
+		
 		//SeContainerInitializer containerInit = SeContainerInitializer.newInstance();
 		//SeContainer container = containerInit.initialize();
 
@@ -17,14 +26,26 @@ public class WeldObserver{
 		//container.getBeanManager().fireEvent(new SimpleEvent());
 
 		//container.close();
+		
+		
+		
+		System.console().readLine();
 	}
 	
 	public void containerInitialized(@Observes ContainerInitialized event, @Parameters List<String> parameters) {
 
+		
+		
 	       if (parameters.size() > 1) {
 			System.out.println("Hello " + parameters.get(0));
 		}else {
 			System.out.println("Hello");
+			try {
+				basicInstance.get().run(null);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

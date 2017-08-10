@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.Checkbox;
 import io.hughestech.consoleui.elements.ConfirmChoice;
 import io.hughestech.consoleui.elements.InputValue;
@@ -22,6 +23,7 @@ import io.hughestech.consoleui.prompt.builder.PromptBuilder;
  * <p>
  * Created by Andreas Wegmann on 20.01.16.
  */
+@ReadEventAnnotation
 public class ConsolePrompt {
 	// input prompt implementation
 	private InputPrompt inputPrompt;
@@ -87,6 +89,7 @@ public class ConsolePrompt {
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
+	@ReadEventAnnotation
 	public HashMap<String, ? extends Answer> prompt(List<PromptableElementIF> promptableElementList) throws IOException {
 		HashMap<String, Answer> answers = new HashMap<String, Answer>();
 

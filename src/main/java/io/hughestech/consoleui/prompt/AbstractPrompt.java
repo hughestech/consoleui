@@ -3,6 +3,7 @@ package io.hughestech.consoleui.prompt;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.Ansi.Color;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.prompt.reader.ConsoleReaderImpl;
 import io.hughestech.consoleui.prompt.reader.ReaderIF;
 
@@ -16,6 +17,7 @@ import static org.fusesource.jansi.Ansi.ansi;
  * User: Andreas Wegmann
  * Date: 06.01.16
  */
+@ReadEventAnnotation
 public abstract class AbstractPrompt {
   protected int renderHeight;
   protected ResourceBundle resourceBundle;

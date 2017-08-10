@@ -3,6 +3,7 @@ package io.hughestech.consoleui.prompt.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.*;
 
 /**
@@ -10,9 +11,11 @@ import io.hughestech.consoleui.elements.*;
  *
  * Created by Andreas Wegmann on 20.01.16.
  */
+@ReadEventAnnotation
 public class PromptBuilder {
 	List<PromptableElementIF> promptList = new ArrayList<PromptableElementIF>();
 
+	@ReadEventAnnotation
 	public List<PromptableElementIF> build() {
 		return promptList;
 	}

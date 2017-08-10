@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.InputValue;
 import io.hughestech.consoleui.prompt.answer.Answer;
 import jline.console.completer.Completer;
@@ -50,6 +51,7 @@ public class InputPromptBuilder {
 		return this;
 	}
 
+	@ReadEventAnnotation
 	public InputPromptBuilder choices(String... completer) {
 		if (completers == null) {
 			completers = new ArrayList<Completer>();
@@ -63,16 +65,19 @@ public class InputPromptBuilder {
 		return this;
 	}
 
+	@ReadEventAnnotation
 	public InputPromptBuilder required() {
 		this.required = true;
 		return this;
 	}
 
+	@ReadEventAnnotation
 	public InputPromptBuilder validate(Consumer<String> validator) {
 		this.validator = validator;
 		return this;
 	}
 
+	@ReadEventAnnotation
 	public PromptBuilder build() {
 		InputValue inputValue = new InputValue(name, message, null, defaultValue);
 		if (fnMessage != null) {

@@ -11,10 +11,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
+
 /**
  * User: Andreas Wegmann
  * Date: 02.01.16
  */
+@ReadEventAnnotation
 public class ConsoleReaderImpl implements ReaderIF {
   ConsoleReader console;
   NonBlockingInputStream in;
@@ -48,6 +51,7 @@ public class ConsoleReaderImpl implements ReaderIF {
     this.allowedSpecialKeys.add(specialKey);
   }
 
+  @ReadEventAnnotation
   public ReaderInput read() {
     Object op;
 
@@ -101,6 +105,7 @@ public class ConsoleReaderImpl implements ReaderIF {
    * @param mask optional mask character (may be used for password entry)
    * @return a ReaderInput object with results
    */
+  @ReadEventAnnotation
   public ReaderInput readLine(List<Completer> completer, String prompt, String value, Character mask) throws IOException {
     if (completer != null) {
       for (Completer c : completer) {

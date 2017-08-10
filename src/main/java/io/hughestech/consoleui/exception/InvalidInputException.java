@@ -1,5 +1,8 @@
 package io.hughestech.consoleui.exception;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
+
+@ReadEventAnnotation
 public class InvalidInputException extends RuntimeException {
 
 	/**

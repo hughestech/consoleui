@@ -6,12 +6,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.items.CheckboxItemIF;
 import io.hughestech.consoleui.prompt.answer.Answer;
 
 /**
  * User: Andreas Wegmann Date: 01.01.16
  */
+@ReadEventAnnotation
 public class Checkbox extends AbstractPromptableElement {
 
 	private List<CheckboxItemIF> checkboxItemList;

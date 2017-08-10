@@ -6,10 +6,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
+
 /**
  * User: Andreas Wegmann
  * Date: 02.01.16
  */
+@ReadEventAnnotation
 public interface ReaderIF {
 
   public enum SpecialKey {

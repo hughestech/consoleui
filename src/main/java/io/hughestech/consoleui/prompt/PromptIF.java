@@ -3,6 +3,7 @@ package io.hughestech.consoleui.prompt;
 import java.io.IOException;
 import java.util.HashMap;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.PromptableElementIF;
 import io.hughestech.consoleui.prompt.answer.Answer;
 
@@ -20,5 +21,6 @@ public interface PromptIF<T extends PromptableElementIF, R extends Answer> {
    * @return the prompt result
    * @throws IOException may be thrown by getting the users input.
    */
+	@ReadEventAnnotation
   R prompt(T promptableElement, HashMap<String, Answer> answers) throws IOException;
 }

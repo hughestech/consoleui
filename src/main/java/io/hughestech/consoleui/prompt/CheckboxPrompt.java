@@ -2,6 +2,7 @@ package io.hughestech.consoleui.prompt;
 
 import org.fusesource.jansi.Ansi;
 
+import io.hughestech.consoleui.ReadEventAnnotation;
 import io.hughestech.consoleui.elements.Checkbox;
 import io.hughestech.consoleui.elements.items.ConsoleUIItemIF;
 import io.hughestech.consoleui.elements.items.ListItemIF;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 /**
  * CheckboxPrompt implements the checkbox choice handling.
  */
+@ReadEventAnnotation
 public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<Checkbox, CheckboxAnswer> {
 
 	// checkbox object to prompt the user for.
@@ -74,7 +76,9 @@ public class CheckboxPrompt extends AbstractListablePrompt implements PromptIF<C
 	 * @throws IOException
 	 *             may be thrown by console reader
 	 */
+	@ReadEventAnnotation
 	public CheckboxAnswer prompt(Checkbox checkbox, HashMap<String, Answer> answers) throws IOException {
+		
 		this.checkbox = checkbox;
 		
 		this.message = this.checkbox.getFnMessage() != null ? this.checkbox.getFnMessage().apply(answers)

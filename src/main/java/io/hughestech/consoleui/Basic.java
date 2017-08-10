@@ -3,9 +3,14 @@ package io.hughestech.consoleui;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.HashSet;import java.util.Map;
+import java.util.function.Function;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.fusesource.jansi.AnsiConsole;
 
@@ -21,17 +26,30 @@ import jline.console.completer.StringsCompleter;
 /**
  * User: Andreas Wegmann Date: 29.11.15
  */
-public class Basic {
+@ReadEventAnnotation
+@ApplicationScoped
+public class Basic implements IExample  {
+	
+	@Inject	static PromptBuilder promptBuilder;
 
-	public static void main(String[] args) throws InterruptedException {
-		AnsiConsole.systemInstall();
+	/* (non-Javadoc)
+	 * @see io.hughestech.consoleui.IExample#run(java.lang.String[])
+	 */
+	@Override
+	@ReadEventAnnotation
+	public void run(String[] args) throws InterruptedException {
+		
+		//AnsiConsole.systemInstall();
+		
+	
+		
 		System.out.println(ansi().eraseScreen().render("@|red,italic Hello|@ @|green World|@\n@|reset "
 				+ "This is a demonstration of ConsoleUI java library. It provides a simple console interface\n"
 				+ "for querying information from the user. ConsoleUI is inspired by Inquirer.js which is written\n" + "in JavaScrpt.|@"));
 
 		try {
 			ConsolePrompt prompt = new ConsolePrompt();
-			PromptBuilder promptBuilder = prompt.getPromptBuilder();
+			promptBuilder = prompt.getPromptBuilder();
 
 			//// @formatter:off
 			promptBuilder.inputPrompt("name")
@@ -42,14 +60,16 @@ public class Basic {
 	            	  }
 	              })
 	              //.mask('*')
-	              .choices("Jim", "Jack", "John")
+	              .choices("Jim", "Jack", "John").defaultValue("Anton")
+	              .when(anwserFunc())
 	              .build();
 			// @formatter:on
 
 			//// @formatter:off
 		    promptBuilder.listPrompt("pizzatype")
-	              .message(anwers -> "Escolha a pizza "+anwers.get("name").value())
+	              .message(anwers -> "Select a pizza "+anwers.get("name").value())
 	              .choices("Margherita", "Veneziana", "Hawai", "Quattro Stagioni")
+	              .when(anwserFunc())
 	              .build();
 		    // @formatter:on
 
@@ -105,5 +125,21 @@ public class Basic {
 			}
 		}
 
+	}
+
+	private Function<Map<String, Answer>, Boolean> anwserFunc() {
+		return new Function<Map<String,Answer>, Boolean>() {
+			
+			@Override
+			public Boolean apply(Map<String, Answer> t) {
+				System.out.println("applying...");
+				if (!t.isEmpty()) {
+					for (String a : t.keySet()) {
+						System.out.println(a);
+					}
+				}
+				return true;
+			}
+		};
 	}
 }
